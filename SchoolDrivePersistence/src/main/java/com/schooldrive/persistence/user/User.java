@@ -127,4 +127,17 @@ public class User {
     public void setDriveBookings(Set<DriveBooking> driveBookings) {
         this.driveBookings = driveBookings;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }
