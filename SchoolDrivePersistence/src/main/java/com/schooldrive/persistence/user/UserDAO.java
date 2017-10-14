@@ -5,4 +5,5 @@ package com.schooldrive.persistence.user;
  */
 public interface UserDAO {
     User getUserById(Integer id);
+    User getUserByLogin(String login);
 }

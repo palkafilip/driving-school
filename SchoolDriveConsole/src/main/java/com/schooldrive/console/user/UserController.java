@@ -1,7 +1,7 @@
 package com.schooldrive.console.user;
 
 import com.schooldrive.logic.user.UserService;
-import com.schooldrive.persistence.user.User;
+import com.schooldrive.logic.user.UserServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,10 +25,14 @@ public class UserController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public ResponseEntity<?> getUsers(@RequestParam Integer id) {
-        System.out.println(id);
+    public ResponseEntity<?> getUsers(@RequestParam Integer id) throws UserServiceException {
         UserPresentation user = new UserPresentation(userService.getUserById(id));
-        System.out.println(user);
+        return new ResponseEntity<Object>(user, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public ResponseEntity<?> getUserByLogin(@RequestParam String login) throws UserServiceException {
+        UserPresentation user = new UserPresentation(userService.getUserByLogin(login));
         return new ResponseEntity<Object>(user, HttpStatus.OK);
     }
 }

@@ -5,7 +5,6 @@ import com.schooldrive.persistence.drivebooking.DriveBooking;
 import com.schooldrive.persistence.instructorrating.InstructorRating;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
