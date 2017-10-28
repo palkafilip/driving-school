@@ -22,7 +22,7 @@ public class RestErrorHandler extends ResponseEntityExceptionHandler {
 
 
     @ExceptionHandler(Throwable.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
     public Object handleException(Throwable e) {
         return new ResponseError(e);
     }

@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import {Http, RequestOptions} from '@angular/http';
 import {Headers} from '@angular/http';
+import {Observable} from "rxjs/Observable";
+import 'rxjs/add/operator/map'
+import "rxjs/add/operator/catch";
 
 @Injectable()
 export class RestService {
@@ -9,31 +12,29 @@ export class RestService {
 
   constructor(private http: Http) { }
 
-  GET(resource: string): Promise<any> {
-
-    let headers = new Headers({
-      'Authorization': 'Basic ' + btoa('filip:password'),
-      'X-Requested-With': 'XMLHttpRequest' // to suppress 401 browser popup
-    });
-
-    let options = new RequestOptions({
-      headers: headers,
-      withCredentials: true,
-    });
-
+  GET(resource: string): Observable<any> {
     const url = this.ORIGIN + resource;
+    const options = this.createRequestOptions("filip","password");
 
     return this.http
       .get(url, options)
-      .toPromise()
-      .then(response => response.json())
-      .catch(err => console.log(err));
+      .map(res => res.json());
   }
 
-  POST(resource: string, params: any): Promise<any> {
+  POST(resource: string, params: any): Observable<any> {
+    const url = this.ORIGIN + resource;
+    const options = this.createRequestOptions("filip","password");
 
+    console.log(url);
+
+    return this.http
+      .post(url, params, options)
+      .map(response => response.json());
+  }
+
+  createRequestOptions(login: string, password: string): RequestOptions {
     let headers = new Headers({
-      'Authorization': 'Basic ' + btoa('filip:password'),
+      'Authorization': 'Basic ' + btoa(`${login}:${password}`),
       'X-Requested-With': 'XMLHttpRequest' // to suppress 401 browser popup
     });
 
@@ -41,12 +42,7 @@ export class RestService {
       headers: headers
     });
 
-    const url = this.ORIGIN + resource;
-
-    return this.http
-      .post(url, params, options)
-      .toPromise()
-      .then(response => response.json());
+    return options;
   }
 
 }

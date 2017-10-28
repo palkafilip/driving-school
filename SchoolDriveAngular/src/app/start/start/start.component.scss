@@ -1,0 +1,20 @@
+.welcomer {
+
+  h1, h2 {
+    font-weight: 300;
+  }
+  h1 {
+    padding-top: 40px;
+  }
+  h2 {
+    padding: 10px 0 40px 0;
+  }
+}
+
+.welcomer-buttons {
+  button {
+    padding: 5px 30px;
+    margin: 10px 20px;
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,12 @@
+@import 'variables';
+@import '../node_modules/bootstrap/scss/bootstrap';
+
+* {
+  font-family: 'Roboto';
+}
+
+body {
+  background: linear-gradient(to bottom, rgba(255,255,255,0.6) 0%,rgba(255,255,255,0.6) 100%), url(./assets/images/background.jpg) no-repeat center center fixed;
+  height: 100vh;
+  background-size: cover;
+}

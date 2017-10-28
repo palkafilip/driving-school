@@ -1,3 +1,23 @@
-<p>
-  register-form works!
-</p>
+<form class="form" (ngSubmit)="register()">
+  <label for="login">Login</label>
+  <input name="login" id="login" [(ngModel)] = "user.login">
+
+  <label for="password">Hasło</label>
+  <input name="password" id="password" [(ngModel)] = "user.password">
+
+  <label for="firstname">Imie</label>
+  <input name="firstname" id="firstname" [(ngModel)] = "user.firstname">
+
+  <label for="lastname">Nazwisko</label>
+  <input name="lastname" id="lastname" [(ngModel)] = "user.lastname">
+
+  <label for="phone">Telefon</label>
+  <input name="phone" id="phone" [(ngModel)] = "user.phone">
+
+  <label for="email">E-mail</label>
+  <input name="email" id="email" [(ngModel)] = "user.email">
+
+  <p *ngIf="errorMsg">{{errorMsg}}</p>
+
+  <button type="submit" >Submit</button>
+</form>

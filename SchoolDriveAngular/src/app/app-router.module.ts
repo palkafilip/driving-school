@@ -3,9 +3,8 @@ import {RouterModule, Routes} from "@angular/router";
 import {CarCheckingComponent} from "./pages/car-checking/car-checking.component";
 
 const applicationRoutes: Routes = [
-  {path: "", redirectTo: "/login", pathMatch: "full"},
-  {path: "login", loadChildren: "app/start/login/login.module#LoginModule"},
-  {path: "register", loadChildren: "app/start/register/register.module#RegisterModule"},
+  {path: "", redirectTo: "/start", pathMatch: "full"},
+  {path: "start", loadChildren: "app/start/start.module#StartModule"},
   {path: "car", component: CarCheckingComponent}
 
 ]

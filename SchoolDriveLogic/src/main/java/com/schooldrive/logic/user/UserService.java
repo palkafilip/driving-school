@@ -1,5 +1,6 @@
 package com.schooldrive.logic.user;
 
+import com.schooldrive.logic.utils.UserConverter;
 import com.schooldrive.persistence.user.User;
 import com.schooldrive.persistence.user.UserDAO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,5 +35,15 @@ public class UserService {
         } catch (Exception e) {
             throw new UserServiceException("User with login: " + login + " does not exist", e);
         }
+    }
+
+    public void registerUser(RegisterUser userToRegister) throws UserServiceException {
+        User user = UserConverter.convertRegisterUserToDBUser(userToRegister);
+        try {
+            userDAO.registerUser(user);
+        } catch (Exception e) {
+            throw new UserServiceException("Cannot register user");
+        }
+
     }
 }

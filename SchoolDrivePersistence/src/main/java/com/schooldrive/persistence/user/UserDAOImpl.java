@@ -33,4 +33,11 @@ public class UserDAOImpl implements UserDAO {
         query.setParameter("ulogin", login);
         return query.getSingleResult();
     }
+
+    @Override
+    public void registerUser(User user) {
+        em.persist(user);
+    }
+
+
 }

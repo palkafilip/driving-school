@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import {RouterModule, Routes} from "@angular/router";
 import {RegisterRootComponent} from "./components/register-root/register-root.component";
 import {RegisterFormComponent} from "./components/register-form/register-form.component";

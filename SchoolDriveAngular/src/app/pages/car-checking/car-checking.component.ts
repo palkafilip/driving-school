@@ -4,7 +4,7 @@ import {RestService} from "../../service/rest-service.service";
 @Component({
   selector: 'app-car-checking',
   templateUrl: './car-checking.component.html',
-  styleUrls: ['./car-checking.component.css']
+  styleUrls: ['./car-checking.component.scss']
 })
 export class CarCheckingComponent implements OnInit {
 
@@ -13,9 +13,11 @@ export class CarCheckingComponent implements OnInit {
 
   ngOnInit() {
     this.service
-      .GET("cars?id=1")
-      .then(response => console.log(response))
-      .catch(err => console.log("coooo" + err));
+      .GET("cars?id=2")
+      .subscribe(
+        res => console.log(res),
+        err => console.log(JSON.parse(err._body))
+      );
   }
 
 }
