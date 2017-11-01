@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {RestService} from "../../service/rest-service.service";
+import {RestService} from "../../service/rest.service";
 
 @Component({
   selector: 'app-car-checking',

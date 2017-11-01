@@ -5,7 +5,8 @@ import {AppComponent} from './app.component';
 import {AppRouterModule} from "./app-router.module";
 import {CarCheckingComponent} from "./pages/car-checking/car-checking.component";
 import {SharedModule} from "./shared/shared.module";
-import {MenuService} from "./service/menu-service.service";
+import {MenuService} from "./service/menu.service";
+import {LoggedUserService} from "./service/logged-user.service";
 
 @NgModule({
   declarations: [
@@ -17,7 +18,10 @@ import {MenuService} from "./service/menu-service.service";
     AppRouterModule,
     SharedModule,
   ],
-  providers: [MenuService],
+  providers: [
+    MenuService,
+    LoggedUserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

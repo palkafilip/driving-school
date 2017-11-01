@@ -1,5 +1,23 @@
-.form {
-  display: flex;
-  flex-direction: column;
-  width: 20%;
+.header {
+  margin-bottom: 25px;
+
+  h1 {
+    font-weight: 300;
+  }
+}
+form {
+  font-weight: 400;
+  width: 50%;
+  margin: 0 auto;
+
+  ::-webkit-input-placeholder {
+    font-size: 12px;
+  }
+  input {
+    font-size: 14px;
+    padding: 8px;
+  }
+  .warning {
+    color: rgba(178, 24, 21, 0.99);
+  }
 }

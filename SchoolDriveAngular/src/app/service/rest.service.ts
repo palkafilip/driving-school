@@ -14,35 +14,55 @@ export class RestService {
 
   GET(resource: string): Observable<any> {
     const url = this.ORIGIN + resource;
-    const options = this.createRequestOptions("filip","password");
 
     return this.http
-      .get(url, options)
+      .get(url)
       .map(res => res.json());
   }
 
   POST(resource: string, params: any): Observable<any> {
     const url = this.ORIGIN + resource;
-    const options = this.createRequestOptions("filip","password");
 
-    console.log(url);
+    return this.http
+      .post(url, params)
+      .map(response => response.json());
+  }
+
+  POSTWithAuthorization(resource: string, login: string, password: string, params: any) {
+
+    const url = this.ORIGIN + resource;
+    const options = this.createRequestOptions(login, password);
 
     return this.http
       .post(url, params, options)
       .map(response => response.json());
   }
 
-  createRequestOptions(login: string, password: string): RequestOptions {
+  GETWithAuthorization(resource: string, login: string, password: string) {
+    const url = this.ORIGIN + resource;
+    const options = this.createRequestOptions(login, password);
+
+    return this.http
+      .get(url, options)
+      .map(res => this.extractData(res))
+  }
+
+  private createRequestOptions(login: string, password: string): RequestOptions {
     let headers = new Headers({
       'Authorization': 'Basic ' + btoa(`${login}:${password}`),
       'X-Requested-With': 'XMLHttpRequest' // to suppress 401 browser popup
     });
 
     let options = new RequestOptions({
-      headers: headers
+      headers: headers,
+      withCredentials: true,
     });
 
     return options;
+  }
+
+  private extractData(res: any) {
+    return res.text() ? res.json() : {};
   }
 
 }
