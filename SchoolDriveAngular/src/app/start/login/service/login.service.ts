@@ -9,7 +9,6 @@ export class LoginService {
 
   constructor(
     private rest: RestService,
-    private menuService: MenuService,
     private loggedUserService: LoggedUserService
   ) { }
 
@@ -18,7 +17,6 @@ export class LoginService {
       .GETWithAuthorization(this.URI, login, password)
       .subscribe(res => {
         this.loggedUserService.setLoggedUser(res);
-        this.menuService.setLoggedUserMenu();
       });
   }
 

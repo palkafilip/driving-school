@@ -58,4 +58,8 @@ public class UserController {
         userService.registerUser(userToRegister);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+    @RequestMapping(value = "/logged")
+    public ResponseEntity checkIfLogged() {
+        return new ResponseEntity(HttpStatus.OK);
+    }
 }

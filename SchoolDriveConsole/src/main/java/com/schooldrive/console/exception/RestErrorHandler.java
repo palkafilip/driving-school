@@ -1,5 +1,6 @@
 package com.schooldrive.console.exception;
 
+import com.schooldrive.logic.utils.ServiceException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -21,7 +22,7 @@ public class RestErrorHandler extends ResponseEntityExceptionHandler {
     }
 
 
-    @ExceptionHandler(Throwable.class)
+    @ExceptionHandler(ServiceException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public Object handleException(Throwable e) {
         return new ResponseError(e);

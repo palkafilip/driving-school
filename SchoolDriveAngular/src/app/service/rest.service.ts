@@ -16,16 +16,16 @@ export class RestService {
     const url = this.ORIGIN + resource;
 
     return this.http
-      .get(url)
-      .map(res => res.json());
+      .get(url, { withCredentials: true })
+      .map(res => this.extractData(res));
   }
 
   POST(resource: string, params: any): Observable<any> {
     const url = this.ORIGIN + resource;
 
     return this.http
-      .post(url, params)
-      .map(response => response.json());
+      .post(url, params, { withCredentials: true })
+      .map(res => this.extractData(res));
   }
 
   POSTWithAuthorization(resource: string, login: string, password: string, params: any) {
@@ -35,7 +35,7 @@ export class RestService {
 
     return this.http
       .post(url, params, options)
-      .map(response => response.json());
+      .map(res => this.extractData(res));
   }
 
   GETWithAuthorization(resource: string, login: string, password: string) {

@@ -1,21 +1,22 @@
+<div [ngClass] = "userLogged ? 'pages-background' : 'start-background'">
 <nav class="navbar navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
+  <a class="navbar-brand" href="#">Driving School</a>
   <ul *ngIf="userLogged" class="nav">
     <li class="nav-item">
-      <a class="nav-link active" href="#">Active</a>
+      <a routerLink="/pages/home" class="nav-link active">Rezerwacja</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Link</a>
+      <a routerLink="/pages" class="nav-link">Instruktorzy</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Link</a>
+      <a routerLink="/" class="nav-link">Historia</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link disabled" href="#">Disabled</a>
+      <a routerLink="/" class="nav-link">Ustawienia</a>
     </li>
   </ul>
 </nav>
-<div class="background">
+
   <div class="container">
     <router-outlet></router-outlet>
   </div>

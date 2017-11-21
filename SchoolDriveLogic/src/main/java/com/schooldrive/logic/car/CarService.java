@@ -5,6 +5,8 @@ import com.schooldrive.persistence.car.CarDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.NoResultException;
+
 /**
  * Created by Filip on 04.10.2017.
  */
@@ -22,8 +24,10 @@ public class CarService {
         Car car;
         try {
             car = carDAO.getCarById(id);
-        } catch (Exception e) {
+        } catch (NoResultException e) {
             throw new CarServiceException("Car with id: " + id + " does not exist");
+        } catch (Exception e) {
+            throw new CarServiceException(e.getMessage(), e);
         }
 
         return car;
