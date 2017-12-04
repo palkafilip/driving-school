@@ -1,11 +1,14 @@
 package com.schooldrive.persistence.drivebooking;
 
+import com.schooldrive.persistence.car.Car;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import java.util.List;
 
 /**
  * Created by Filip on 04.10.2017.
@@ -24,5 +27,13 @@ public class DriveBookingDAOImpl implements DriveBookingDAO {
     @Override
     public void addDriveBooking(DriveBooking driveBooking) {
         em.merge(driveBooking);
+    }
+
+    @Override
+    public List<DriveBooking> getAllDrivesByUserId(Integer userId) {
+        String jpqlQuery = "SELECT db from DriveBooking db where db.user.id = :uid";
+        TypedQuery<DriveBooking> query = em.createQuery(jpqlQuery, DriveBooking.class);
+        query.setParameter("uid", userId);
+        return query.getResultList();
     }
 }

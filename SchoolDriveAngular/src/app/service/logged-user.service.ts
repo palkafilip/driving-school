@@ -8,13 +8,14 @@ import {RestService} from "./rest.service";
 export class LoggedUserService {
 
   private loggedUser: BehaviorSubject<LoggedUser>;
-  private loggedUserEmitter: EventEmitter<boolean> = new EventEmitter();
+  public loggedUserEmitter: EventEmitter<boolean> = new EventEmitter();
   constructor(private rest: RestService) {
   }
 
   getLoggedUser(): LoggedUser {
     // if(!this.loggedUser) {
-    //   return this.loggedUserEmitter.map( e => this.loggedUser.getValue());
+    //   console.log('wchodze');
+    //   return this.loggedUserEmitter.map( e => this.loggedUser.asObservable());
     // }
     // return this.loggedUser.asObservable();
 

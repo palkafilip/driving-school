@@ -1,42 +1,19 @@
 <h1>Nadchodzące jazdy:</h1>
 
-<div class="drives">
-  <div class="drive">
-    <p class="date">20.11.2017</p>
-    <p class="user-name">Filip Pałka</p>
-    <p class="instructor-name">Czesław Nowak</p>
-    <button class="btn btn-info">Zobacz jazdę</button>
-  </div>
-  <div class="drive">
-    <p class="date">20.11.2017</p>
-    <p class="user-name">Filip Pałka</p>
-    <p class="instructor-name">Czesław Nowak</p>
-    <button class="btn btn-info">Zobacz jazdę</button>
-  </div>
-  <div class="drive">
-    <p class="date">20.11.2017</p>
-    <p class="user-name">Filip Pałka</p>
-    <p class="instructor-name">Czesław Nowak</p>
-    <button class="btn btn-info">Zobacz jazdę</button>
-  </div>
-  <div class="drive">
-    <p class="date">20.11.2017</p>
-    <p class="user-name">Filip Pałka</p>
-    <p class="instructor-name">Czesław Nowak</p>
-    <button class="btn btn-info">Zobacz jazdę</button>
-  </div>
-  <div class="drive">
-    <p class="date">20.11.2017</p>
-    <p class="user-name">Filip Pałka</p>
-    <p class="instructor-name">Czesław Nowak</p>
-    <button class="btn btn-info">Zobacz jazdę</button>
-  </div>
-  <div class="drive">
-    <p class="date">20.11.2017</p>
-    <p class="user-name">Filip Pałka</p>
-    <p class="instructor-name">Czesław Nowak</p>
+<div *ngIf="drives" class="drives">
+  <div *ngFor="let drive of drives" class="drive">
+    <p class="date">{{drive.day}}</p>
+    <p class="user-name">{{capitalizeFirstLetters(drive.user.firstname, drive.user.lastname)}}</p>
+    <p class="instructor-name">{{capitalizeFirstLetters(drive.instructor.firstname, drive.instructor.lastname)}}</p>
+    <p class="date"></p>
     <button class="btn btn-info">Zobacz jazdę</button>
   </div>
 </div>
-<!--<h2>Nie masz obecnie żadnych rezerwacji</h2>-->
-<!--<p><a href="">Zarezerwuj jazdy</a></p>-->
+
+<a routerLink="../../drivebooks">klik</a>
+
+<div *ngIf="drives">
+  <h2>Nie masz obecnie żadnych rezerwacji</h2>
+  <p><a href="">Zarezerwuj jazdy</a></p>
+</div>
+

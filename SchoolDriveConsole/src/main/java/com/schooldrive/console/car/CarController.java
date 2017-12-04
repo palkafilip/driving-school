@@ -17,17 +17,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/rest/cars")
 public class CarController {
 
-        CarService carService;
+    CarService carService;
 
-        @Autowired
-        public CarController(CarService carService) {
-            this.carService = carService;
-        }
+    @Autowired
+    public CarController(CarService carService) {
+        this.carService = carService;
+    }
 
-        @RequestMapping(value = "", method = RequestMethod.GET)
-        public ResponseEntity<?> getUsers(@RequestParam Integer id) throws CarServiceException {
-            CarPresentation car = new CarPresentation(carService.getCarById(id));
-            return new ResponseEntity<Object>(car, HttpStatus.OK);
-        }
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    public ResponseEntity<?> getUsers(@RequestParam Integer id) throws CarServiceException {
+        CarPresentation car = new CarPresentation(carService.getCarById(id));
+        return new ResponseEntity<Object>(car, HttpStatus.OK);
+    }
 
 }

@@ -1,0 +1,12 @@
+<div class="search-instructor">
+  <input class="form-control" type="text" [(ngModel)] = "searchInput">
+  <button class="btn btn-info" (click)="filterInstructors()">Search!</button>
+</div>
+
+<div class="instructors">
+  <div *ngFor="let instructor of instructors" class="instructor">
+    <p class="name">{{instructor.firstname}} {{instructor.lastname}}</p>
+    <p class="email">{{instructor.email}}</p>
+    <button class="btn btn-info" (click)="goToDetails(instructor.id)">Zobacz profil</button>
+  </div>
+</div>

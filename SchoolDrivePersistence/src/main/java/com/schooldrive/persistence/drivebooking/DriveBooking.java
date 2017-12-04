@@ -95,4 +95,17 @@ public class DriveBooking {
     public void setEndTime(String endTime) {
         this.endTime = endTime;
     }
+
+    @Override
+    public String toString() {
+        return "DriveBooking{" +
+                "id=" + id +
+                ", user=" + user +
+                ", instructor=" + instructor +
+                ", car=" + car +
+                ", day=" + day +
+                ", startTime='" + startTime + '\'' +
+                ", endTime='" + endTime + '\'' +
+                '}';
+    }
 }

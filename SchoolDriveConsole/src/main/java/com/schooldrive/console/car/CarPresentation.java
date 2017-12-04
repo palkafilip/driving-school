@@ -1,5 +1,6 @@
 package com.schooldrive.console.car;
 
+import com.schooldrive.logic.utils.DateUtils;
 import com.schooldrive.persistence.car.Car;
 
 import java.util.Date;
@@ -12,7 +13,7 @@ public class CarPresentation {
     private Integer id;
     private String brand;
     private String model;
-    private Date year;
+    private String year;
     private Integer engineCapacity;
     private String fuelType;
 
@@ -20,7 +21,7 @@ public class CarPresentation {
         this.id = car.getId();
         this.brand = car.getBrand();
         this.model = car.getModel();
-        this.year = car.getYear();
+        this.year = DateUtils.dateYearOnly().format(car.getYear());
         this.engineCapacity = car.getEngineCapacity();
         this.fuelType = car.getFuelType();
     }
@@ -37,7 +38,7 @@ public class CarPresentation {
         return model;
     }
 
-    public Date getYear() {
+    public String getYear() {
         return year;
     }
 

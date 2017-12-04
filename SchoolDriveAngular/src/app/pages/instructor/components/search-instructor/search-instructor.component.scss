@@ -1,25 +1,20 @@
-* {
-  margin: 0;
-  padding: 0;
-  font-weight: 300;
+.search-instructor {
+  display: flex;
 }
 
-h1 {
-  padding: 30px 0;
-}
-
-.drives {
+.instructors {
 
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 
-  .drive {
+  .instructor {
     //background-color: #f5f5f5;
     border: 1px solid #d9d9d9;
     border-radius: 4px;
     padding: 20px 80px 20px 20px;
     margin: 0 30px 30px 0;
+
 
     p {
       font-size: 0.8rem;
@@ -32,9 +27,8 @@ h1 {
       font-weight: 700;
     }
 
-    .user-name, .instructor-name {
+    .name, .email {
       font-weight: 700;
     }
   }
 }
-
