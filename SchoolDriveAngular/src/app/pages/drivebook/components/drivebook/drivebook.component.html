@@ -1,0 +1,7 @@
+<div class="drive">
+  <p class="icon"><i class="fa fa-car" aria-hidden="true"></i></p>
+  <p class="info"><span class="bold">Dzień:</span> {{drive.day}}</p>
+  <p class="info"><span class="bold">Godzina:</span> {{convertTimeToHoursAndMinutes(drive.startTime)}} - {{convertTimeToHoursAndMinutes(drive.endTime)}}</p>
+  <p class="info"><span class="bold">Instruktor:</span> {{capitalizeFirstLetters(drive.instructor.firstname, drive.instructor.lastname)}}</p>
+  <p class="button"><a href="#">Zobacz jazdę</a></p>
+</div>

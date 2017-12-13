@@ -7,4 +7,5 @@ public interface UserDAO {
     User getUserById(Integer id);
     User getUserByLogin(String login);
     void registerUser(User user);
+    User updateUser(User user);
 }

@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="forms-container">
+    <h1>Ustawienia konta</h1>
+    <h2>Zmień dane personalne</h2>
+    <form (ngSubmit)="applyPersonalChanges()">
+      <div class="form-group">
+        <label for="firstname">Imię</label>
+        <input type="text" class="form-control" name="firstname" id="firstname" [(ngModel)]="loggedUser.firstname"
+               placeholder="{{loggedUser.firstname}}">
+      </div>
+      <div class="form-group">
+        <label for="lastname">Nazwisko</label>
+        <input type="text" class="form-control" name="lastname" id="lastname" [(ngModel)]="loggedUser.lastname"
+               placeholder="{{loggedUser.lastname}}">
+      </div>
+      <div class="form-group">
+        <label for="phone">Telefon</label>
+        <input type="text" class="form-control" name="phone" id="phone" [(ngModel)]="loggedUser.phone"
+               placeholder="{{loggedUser.phone}}">
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" class="form-control" name="email" id="email" [(ngModel)]="loggedUser.email"
+               placeholder="{{loggedUser.email}}">
+      </div>
+
+      <button class="btn btn-info btn-customized" type="submit">Zatwierdź</button>
+    </form>
+
+    <h2>Zmień hasło</h2>
+    <form (ngSubmit)="applyPasswordChange()">
+      <div class="form-group">
+        <label for="password">Wprowadź nowe hasło</label>
+        <input type="password" class="form-control" name="firstname" id="password" [(ngModel)]="newPassword"
+               placeholder="wprowadź hasło...">
+      </div>
+      <div class="form-group">
+        <label for="re-password">Powtórz nowe hasło</label>
+        <input type="password" class="form-control" name="firstname" id="re-password" [(ngModel)]="repeatedPassword"
+               placeholder="powtórz hasło...">
+      </div>
+      <button class="btn btn-info btn-customized" type="submit">Zatwierdź</button>
+    </form>
+
+    <p>{{result}}</p>
+  </div>
+</div>

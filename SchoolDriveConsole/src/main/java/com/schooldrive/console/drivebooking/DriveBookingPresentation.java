@@ -2,7 +2,7 @@ package com.schooldrive.console.drivebooking;
 
 import com.schooldrive.console.car.CarPresentation;
 import com.schooldrive.console.instructor.InstructorPresentation;
-import com.schooldrive.console.user.UserPresentation;
+import com.schooldrive.logic.user.UserPresentation;
 import com.schooldrive.logic.utils.DateUtils;
 import com.schooldrive.persistence.drivebooking.DriveBooking;
 

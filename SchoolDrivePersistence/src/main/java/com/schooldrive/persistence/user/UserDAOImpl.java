@@ -39,5 +39,10 @@ public class UserDAOImpl implements UserDAO {
         em.persist(user);
     }
 
+    @Override
+    public User updateUser(User user) {
+        return em.merge(user);
+    }
+
 
 }

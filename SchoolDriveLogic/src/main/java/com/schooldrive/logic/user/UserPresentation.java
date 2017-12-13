@@ -1,4 +1,4 @@
-package com.schooldrive.console.user;
+package com.schooldrive.logic.user;
 
 import com.schooldrive.persistence.user.User;
 
@@ -14,6 +14,9 @@ public class UserPresentation {
     private String lastname;
     private String phone;
     private String email;
+
+    public UserPresentation() {
+    }
 
     public UserPresentation(User user) {
 
@@ -52,5 +55,18 @@ public class UserPresentation {
 
     public String getEmail() {
         return email;
+    }
+
+    @Override
+    public String toString() {
+        return "UserPresentation{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }

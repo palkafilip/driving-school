@@ -1,3 +1,18 @@
-<p>
-  instructor-details works! ID: {{id}}
-</p>
+<div class="container">
+  <p>
+    instructor-details works! ID: {{id}}
+  </p>
+
+  <!--<div *ngIf="instructorRates">-->
+  <div>
+    <p>{{instructorRates[0]?.instructor.firstname}}</p>
+    <p>{{instructorRates[0]?.instructor.lastname}}</p>
+    <p>{{instructorRates[0]?.instructor.email}}</p>
+  </div>
+  <div *ngFor="let rate of instructorRates">
+    <p>{{rate.date}}</p>
+    <p>{{rate.rate}}</p>
+    <p>{{rate.comment}}</p>
+  </div>
+  <!--</div>-->
+</div>

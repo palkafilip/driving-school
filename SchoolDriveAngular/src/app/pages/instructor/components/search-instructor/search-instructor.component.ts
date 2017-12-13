@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Instructor} from "../../../../classes/instructor";
-import {SearchInstructorService} from "../../service/search-instructor.service";
+import {InstructorService} from "../../service/instructor.service";
 import {Subscription} from "rxjs/Subscription";
 import {ActivatedRoute, Router} from "@angular/router";
 
@@ -11,12 +11,14 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class SearchInstructorComponent implements OnInit, OnDestroy {
 
-  instructors: Instructor[] = [];
+  allInstructors: Instructor[] = [];
+  filteredInstructors: Instructor[] = [];
   private sub: Subscription;
   searchInput = '';
+  searchResult = '';
 
   constructor(
-    private instructorService: SearchInstructorService,
+    private instructorService: InstructorService,
     private router: Router,
     private route: ActivatedRoute,
   ) { }
@@ -28,12 +30,16 @@ export class SearchInstructorComponent implements OnInit, OnDestroy {
   getAllInstructors() {
     this.sub = this.instructorService
       .getAllInstructors()
-      .subscribe(instructors => this.instructors = instructors);
+      .subscribe(instructors => this.allInstructors = instructors);
   }
 
   filterInstructors() {
-    this.instructors = this.instructors
+    this.searchResult = '';
+    this.filteredInstructors = this.allInstructors
       .filter(i => i.firstname.search(this.searchInput) > -1 || i.lastname.search(this.searchInput) > -1);
+    if(this.filteredInstructors.length === 0) {
+      this.searchResult = 'Nie znaleziono instruktorów spełniających podane kryteria';
+    }
   }
 
   goToDetails(id: number) {

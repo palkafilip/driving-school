@@ -23,4 +23,8 @@ public class InstructorService {
     public List<Instructor> getAllInstructors() {
         return instructorDAO.getAllInstructors();
     }
+
+    public Instructor getById(Integer id) {
+        return instructorDAO.getInstructorById(id);
+    }
 }

@@ -1,12 +1,24 @@
 <div class="search-instructor">
-  <input class="form-control" type="text" [(ngModel)] = "searchInput">
-  <button class="btn btn-info" (click)="filterInstructors()">Search!</button>
+  <h2>Wyszukaj instruktora po imieniu lub nazwisku</h2>
+  <div class="searcher">
+    <input class="form-control" type="text" placeholder="wpisz imię lub nazwisko..." [(ngModel)]="searchInput">
+    <button class="btn btn-info btn-customized" (click)="filterInstructors()">Szukaj</button>
+  </div>
+
 </div>
 
-<div class="instructors">
-  <div *ngFor="let instructor of instructors" class="instructor">
-    <p class="name">{{instructor.firstname}} {{instructor.lastname}}</p>
-    <p class="email">{{instructor.email}}</p>
-    <button class="btn btn-info" (click)="goToDetails(instructor.id)">Zobacz profil</button>
+<div class="result-container">
+  <p class="searchResult">{{searchResult}}</p>
+
+  <div class="instructors">
+    <div *ngFor="let instructor of filteredInstructors" class="instructor">
+      <p class="icon"><i class="fa fa-user" aria-hidden="true"></i> Instruktor</p>
+      <p class="info"><span class="bold">Imię:</span> {{instructor.firstname}}</p>
+      <p class="info"><span class="bold">Nazwisko:</span> {{instructor.lastname}}</p>
+      <p class="info"><span class="bold">Telefon:</span> {{instructor.phone}}</p>
+      <p class="button"><a (click)="goToDetails(instructor.id)">Zobacz profil</a></p>
+    </div>
   </div>
 </div>
+
+<div class="bufor"></div>

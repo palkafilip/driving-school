@@ -46,4 +46,24 @@ public class UserService {
         }
 
     }
+
+    public User updateUserPersonalData(UserPresentation userToUpdate) throws UserServiceException {
+        User userFromDB = getUserById(userToUpdate.getId());
+
+        userFromDB.setFirstname(userToUpdate.getFirstname());
+        userFromDB.setLastname(userToUpdate.getLastname());
+        userFromDB.setPhone(userToUpdate.getPhone());
+        userFromDB.setEmail(userToUpdate.getEmail());
+        userFromDB.setPassword(userToUpdate.getPassword());
+
+        return userDAO.updateUser(userFromDB);
+    }
+
+    public User updateUserPassword(UserPresentation userToUpdate) throws UserServiceException {
+        User userFromDB = getUserById(userToUpdate.getId());
+
+        userFromDB.setPassword(userToUpdate.getPassword());
+
+        return userDAO.updateUser(userFromDB);
+    }
 }

@@ -1,0 +1,32 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    padding: 40px 0;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin-bottom: 20px;
+  }
+  .drives {
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .btn-customized {
+    padding: 5px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
+}
+

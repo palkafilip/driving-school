@@ -1,0 +1,12 @@
+<div class="container">
+  <h1>Nadchodzące jazdy:</h1>
+
+  <div *ngIf="drives" class="drives">
+    <app-drivebook *ngFor="let drive of drives" [drive]="drive" ></app-drivebook>
+  </div>
+
+  <div *ngIf="drives.length === 0">
+    <h2>Nie masz obecnie żadnych rezerwacji</h2>
+    <button class="btn btn-info btn-customized">Zarezerwuj jazdę</button>
+  </div>
+</div>

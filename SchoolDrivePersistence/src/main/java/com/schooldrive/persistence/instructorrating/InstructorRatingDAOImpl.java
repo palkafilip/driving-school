@@ -6,6 +6,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import java.util.List;
 
 /**
  * Created by Filip on 02.10.2017.
@@ -23,5 +25,13 @@ public class InstructorRatingDAOImpl implements InstructorRatingDAO {
 
     public void addInstructorRating(InstructorRating instructorRating) {
         em.merge(instructorRating);
+    }
+
+    @Override
+    public List<InstructorRating> getByInstructorId(Integer instructorId) {
+        String jpqlQuery = "SELECT ir from InstructorRating ir where ir.instructor.id = :iid";
+        TypedQuery<InstructorRating> query = em.createQuery(jpqlQuery, InstructorRating.class);
+        query.setParameter("iid", instructorId);
+        return query.getResultList();
     }
 }
