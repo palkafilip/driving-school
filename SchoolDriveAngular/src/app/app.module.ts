@@ -7,6 +7,7 @@ import {SharedModule} from "./shared/shared.module";
 import {MenuService} from "./service/menu.service";
 import {LoggedUserService} from "./service/logged-user.service";
 import {AuthenticatedGuardService} from "./service/authenticated-guard.service";
+import {DateUtilsService} from "./utils/date-utils.service";
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import {AuthenticatedGuardService} from "./service/authenticated-guard.service";
     MenuService,
     LoggedUserService,
     AuthenticatedGuardService,
+    DateUtilsService,
   ],
   bootstrap: [AppComponent]
 })

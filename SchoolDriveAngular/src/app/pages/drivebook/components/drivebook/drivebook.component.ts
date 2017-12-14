@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {DriveBooking} from "../../../../classes/drive-booking";
+import {DateUtilsService} from "../../../../utils/date-utils.service";
 
 @Component({
   selector: 'app-drivebook',
@@ -11,16 +12,11 @@ export class DrivebookComponent implements OnInit {
   @Input()
   drive: DriveBooking;
 
-  constructor() { }
+  constructor(
+    private dateUtils: DateUtilsService,
+  ) { }
 
   ngOnInit() {
-  }
-
-  //from xx:yy:zz to xx:yy
-  convertTimeToHoursAndMinutes(date: string) {
-    const split = date.split(':');
-
-    return `${split[0]}:${split[1]}`;
   }
 
   //funkcja zamieniająca pierwszą literę każdego słowa na wielką i zwracająca słowa oddzielone spacją
@@ -32,4 +28,7 @@ export class DrivebookComponent implements OnInit {
     return capitalized.substr(0, capitalized.length-1);
   }
 
+  convertTimeToHoursAndMinutes(date: string): string {
+    return this.dateUtils.convertTimeToHoursAndMinutes(date);
+  }
 }

@@ -1,18 +1,35 @@
 <div class="container">
-  <p>
-    instructor-details works! ID: {{id}}
-  </p>
 
-  <!--<div *ngIf="instructorRates">-->
-  <div>
-    <p>{{instructorRates[0]?.instructor.firstname}}</p>
-    <p>{{instructorRates[0]?.instructor.lastname}}</p>
-    <p>{{instructorRates[0]?.instructor.email}}</p>
+  <div *ngIf="instructor" class="instructor-container">
+    <div class="instructor-data">
+      <h2>Informacje o instruktorze</h2>
+      <p>Imię: <span class="smaller">{{instructor.firstname}}</span></p>
+      <p>Nazwisko: <span class="smaller">{{instructor.lastname}}</span></p>
+      <p>Email: <span class="smaller">{{instructor.email}}</span></p>
+      <p>Telefon: <span class="smaller">{{instructor.phone}}</span></p>
+      <p>Średnia ocen: <span class="smaller">{{averageInstructorRate()}}</span></p>
+
+    </div>
+    <div class="instructor-image">
+      <!--<img src="/src/assets/images/instructor_photo_1.jpg" alt="photo of instructor">-->
+      <img src="../../../../../assets/images/instructor_photo_{{instructor.id}}.jpg" alt="photo of instructor">
+    </div>
   </div>
-  <div *ngFor="let rate of instructorRates">
-    <p>{{rate.date}}</p>
-    <p>{{rate.rate}}</p>
-    <p>{{rate.comment}}</p>
+
+  <div *ngIf="instructorRates.length === 0 && instructor" class="text-container">
+    <h2>{{instructor.firstname}} {{instructor.lastname}} nie ma jeszcze ocen</h2>
   </div>
-  <!--</div>-->
+
+  <div *ngIf="instructorRates.length > 0" class="rates-container">
+    <div *ngFor="let rate of instructorRates" class="rates">
+      <div class="top">
+        <p>Data: {{convertDateWithoutTime(rate.date)}}</p>
+        <p>Ocena: {{rate.rate}}</p>
+      </div>
+      <div class="comment">
+        <p>"{{rate.comment}}" <span class="author">~{{rate.user.firstname}} {{rate.user.lastname}}</span></p>
+      </div>
+    </div>
+  </div>
+
 </div>
