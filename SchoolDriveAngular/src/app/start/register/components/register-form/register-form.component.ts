@@ -10,7 +10,7 @@ import { RegisterService } from "../../service/service.service";
 export class RegisterFormComponent implements OnInit {
 
   user: RegisterUser;
-  errorMsg: string;
+  msg: string;
   constructor(private service: RegisterService) { }
 
   ngOnInit() {
@@ -18,16 +18,19 @@ export class RegisterFormComponent implements OnInit {
   }
 
   register() {
-    this.errorMsg = '';
+    this.msg = '';
     for(const prop in this.user) {
       if(this.user[prop].length < 1 && prop !== 'email') {
-        this.errorMsg = `Wypełnij pole ${prop}`;
+        this.msg = `Wypełnij pole ${prop}`;
         return;
       }
     }
     this.service
       .registerUser(this.user)
-      .subscribe(res => console.log(res));
+      .subscribe(res => {
+        console.log(res);
+        this.msg = `${res['firstname']}, zostałeś zarejestrowany pomyślnie!`
+      });
   }
 
 }

@@ -30,7 +30,7 @@
     <label for="email">E-mail</label>
     <input type="email" class="form-control" name="email" placeholder="Enter email" id="email" [(ngModel)]="user.email">
   </div>
-  <p class="warning" *ngIf="errorMsg">{{errorMsg}}</p>
+  <p class="warning" *ngIf="msg">{{msg}}</p>
 
   <button class="btn btn-info" type="submit">Zarejestruj</button>
 </form>

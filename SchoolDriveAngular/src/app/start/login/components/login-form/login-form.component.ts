@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MenuService} from "../../../../service/menu.service";
 import {LoginService} from "../../service/login.service";
+import {HttpResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-login-form',
@@ -26,7 +27,15 @@ export class LoginFormComponent implements OnInit {
     }
     this.errorMsg = '';
     this.loginService
-      .logUser(this.login, this.password);
+      .logUser(this.login, this.password)
+      .subscribe(
+        res => {
+          this.loginService.setLoggedUser(res);
+        },
+        (err: HttpResponse<any>) => {
+          this.errorMsg = JSON.parse(err['_body']).error;
+        }
+      );
   }
 
 }

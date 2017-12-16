@@ -56,7 +56,7 @@ public class UserController {
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public ResponseEntity<?> registerUser(@RequestBody RegisterUser userToRegister) throws UserServiceException {
         userService.registerUser(userToRegister);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(userToRegister, HttpStatus.OK);
     }
     @RequestMapping(value = "/logged")
     public ResponseEntity<?> checkIfLogged() {
