@@ -20,8 +20,8 @@ import java.util.stream.Collectors;
 @RequestMapping("/rest/instructors")
 public class InstructorController {
 
-    InstructorService instructorService;
-    InstructorRatingService instructorRatingService;
+    private InstructorService instructorService;
+    private InstructorRatingService instructorRatingService;
 
     @Autowired
     public InstructorController(InstructorService instructorService, InstructorRatingService instructorRatingService) {

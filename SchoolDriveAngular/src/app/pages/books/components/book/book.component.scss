@@ -1,0 +1,78 @@
+.container {
+  //margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  .background {
+    margin-top: 80px;
+    background-color: #eff3f5;
+    padding: 10px;
+    border-radius: 4px;
+    width: 80%;
+    .choose-container {
+      text-align: center;
+    }
+
+    .summary-container {
+      text-align: center;
+    }
+
+    .choose-container, .summary-container {
+      background: #ffffff;
+      border: 1px solid #d9d9d9;
+      padding: 50px 200px;
+
+      h1 {
+        font-size: 1.4rem;
+        padding: 15px 0;
+      }
+
+      p {
+        font-size: 0.8rem;
+      }
+
+      .select {
+        text-align: start;
+        width: 400px;
+        margin: 0 auto;
+
+        select, input {
+          cursor: pointer;
+          margin: 40px 0 10px;
+          font-size: 0.8rem;
+
+          option:disabled {
+            background-color: #ececec;
+          }
+        }
+      }
+      .bold {
+        font-weight: 700;
+      }
+      .row {
+        padding: 10px 0;
+      }
+
+      .buttons {
+        padding: 0 15px;
+
+        button {
+          margin-right: 15px;
+          margin-top: 15px;
+        }
+      }
+    }
+
+    .btn-customized {
+      padding: 5px 25px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .errorMsg {
+      padding: 20px 0;
+    }
+  }
+}
+

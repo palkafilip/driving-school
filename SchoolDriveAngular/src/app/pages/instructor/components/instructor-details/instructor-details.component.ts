@@ -1,10 +1,10 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {Subscription} from "rxjs/Subscription";
-import {InstructorRating} from "../../../../classes/instructor-rating";
+import {InstructorRatingPresentation} from "../../../../classes/instructor-rating-presentation";
 import {InstructorService} from "../../service/instructor.service";
 import {Instructor} from "../../../../classes/instructor";
-import {DateUtilsService} from "../../../../utils/date-utils.service";
+import {DateUtilsService} from "../../../../service/date-utils.service";
 
 @Component({
   selector: 'app-instructor-details',
@@ -17,7 +17,7 @@ export class InstructorDetailsComponent implements OnInit, OnDestroy {
   private sub: Subscription;
   private sub2: Subscription;
   id: number;
-  instructorRates: InstructorRating[] = [];
+  instructorRates: InstructorRatingPresentation[] = [];
   instructor: Instructor;
 
   constructor(

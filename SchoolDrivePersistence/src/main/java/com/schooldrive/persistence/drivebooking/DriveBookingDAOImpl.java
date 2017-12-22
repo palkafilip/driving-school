@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -34,6 +35,16 @@ public class DriveBookingDAOImpl implements DriveBookingDAO {
         String jpqlQuery = "SELECT db from DriveBooking db where db.user.id = :uid";
         TypedQuery<DriveBooking> query = em.createQuery(jpqlQuery, DriveBooking.class);
         query.setParameter("uid", userId);
+        return query.getResultList();
+    }
+
+    @Override
+    public List<DriveBooking> getTakenHoursInDayByInstructorCarDay(Integer instructorId, Integer carId, Date inputDay) {
+        String jpqlQuery = "SELECT db from DriveBooking db where db.instructor.id = :iid and db.car.id = :cid and db.day = :iday";
+        TypedQuery<DriveBooking> query = em.createQuery(jpqlQuery, DriveBooking.class);
+        query.setParameter("iid", instructorId);
+        query.setParameter("cid", carId);
+        query.setParameter("iday", inputDay);
         return query.getResultList();
     }
 }

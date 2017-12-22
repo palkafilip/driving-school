@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {DriveBooking} from "../../../../classes/drive-booking";
-import {DateUtilsService} from "../../../../utils/date-utils.service";
+import {DriveBookingPresentation} from "../../../../classes/drive-booking-presentation";
+import {DateUtilsService} from "../../../../service/date-utils.service";
 
 @Component({
   selector: 'app-drivebook',
@@ -10,7 +10,7 @@ import {DateUtilsService} from "../../../../utils/date-utils.service";
 export class DrivebookComponent implements OnInit {
 
   @Input()
-  drive: DriveBooking;
+  drive: DriveBookingPresentation;
 
   constructor(
     private dateUtils: DateUtilsService,

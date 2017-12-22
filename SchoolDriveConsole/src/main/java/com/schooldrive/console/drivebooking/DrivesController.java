@@ -2,11 +2,13 @@ package com.schooldrive.console.drivebooking;
 
 import com.schooldrive.logic.car.CarServiceException;
 import com.schooldrive.logic.drivebooking.DriveBookingService;
+import com.schooldrive.logic.hoursinterval.HoursIntervalPresentation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,5 +38,21 @@ public class DrivesController {
         return new ResponseEntity<>(drivesList, HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/reserved", method = RequestMethod.GET)
+    public ResponseEntity<?> getReservedHoursInDay(@RequestParam Integer instructorId,
+                                                               @RequestParam Integer carId,
+                                                               @RequestParam String day) throws CarServiceException, ParseException {
+
+        List<HoursIntervalPresentation> takenHours = driveBookingService
+                .getTakenHoursInDay(instructorId,carId,day)
+                .stream()
+                .map(hi -> new HoursIntervalPresentation(hi))
+                .collect(Collectors.toList());
+
+        return new ResponseEntity<>(takenHours, HttpStatus.OK);
+    }
+
+//    @RequestMapping(value = "/new/book", method = RequestMethod.POST)
+//    public ResponseEntity<?> bookDrive()
 
 }

@@ -1,6 +1,6 @@
 import {User} from "./user";
 import {Instructor} from "./instructor";
-export class InstructorRating {
+export class InstructorRatingPresentation {
   id: number;
   user: User;
   instructor: Instructor;

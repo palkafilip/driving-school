@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.NoResultException;
+import java.util.List;
 
 /**
  * Created by Filip on 04.10.2017.
@@ -31,5 +32,9 @@ public class CarService {
         }
 
         return car;
+    }
+
+    public List<Car> getAllCars() {
+        return carDAO.getAllCars();
     }
 }

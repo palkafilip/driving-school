@@ -1,10 +1,10 @@
-package com.schooldrive.persistence.drivebooking;
+package com.schooldrive.persistence.instructorbreak;
 
 import com.schooldrive.persistence.car.Car;
 import com.schooldrive.persistence.car.CarDAO;
-import com.schooldrive.persistence.carrating.CarRating;
-import com.schooldrive.persistence.carrating.CarRatingDAO;
 import com.schooldrive.persistence.config.SchoolDrivePersistenceContext;
+import com.schooldrive.persistence.drivebooking.DriveBooking;
+import com.schooldrive.persistence.drivebooking.DriveBookingDAO;
 import com.schooldrive.persistence.instructor.Instructor;
 import com.schooldrive.persistence.instructor.InstructorDAO;
 import com.schooldrive.persistence.user.User;
@@ -12,12 +12,10 @@ import com.schooldrive.persistence.user.UserDAO;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Created by Filip on 04.10.2017.
+ * Created by Filip on 16.12.2017.
  */
 public class Test {
 
@@ -28,25 +26,10 @@ public class Test {
         CarDAO carDAO = context.getBean(CarDAO.class);
         UserDAO userDAO = context.getBean(UserDAO.class);
         InstructorDAO instructorDAO = context.getBean(InstructorDAO.class);
+        InstructorBreakDAO instructorBreakDAO = context.getBean(InstructorBreakDAO.class);
 
-//        Instructor instructor = instructorDAO.getInstructorById(2);
-//        User user = userDAO.getUserById(1);
-//        Car car = carDAO.getCarById(5);
-//
-//        DriveBooking driveBooking = new DriveBooking();
-//        driveBooking.setCar(car);
-//        driveBooking.setUser(user);
-//        driveBooking.setInstructor(instructor);
-//        driveBooking.setDay(new Date());
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date d = null;
-        try {
-            d = simpleDateFormat.parse("2017-12-20");
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        System.out.println(instructorBreakDAO.getAllInstructorBreaksByInstructorId(1));
 
-        System.out.println(driveBookingDAO.getTakenHoursInDayByInstructorCarDay(1, 1, d));
     }
 }

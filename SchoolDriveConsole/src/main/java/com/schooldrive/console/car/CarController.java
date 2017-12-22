@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  * Created by Filip on 13.10.2017.
  */
@@ -25,9 +28,21 @@ public class CarController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public ResponseEntity<?> getUsers(@RequestParam Integer id) throws CarServiceException {
+    public ResponseEntity<?> getCar(@RequestParam Integer id) throws CarServiceException {
         CarPresentation car = new CarPresentation(carService.getCarById(id));
         return new ResponseEntity<Object>(car, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    public ResponseEntity<?> getAllCars() {
+
+        List<CarPresentation> cars = carService
+                .getAllCars()
+                .stream()
+                .map(car -> new CarPresentation(car))
+                .collect(Collectors.toList());
+
+        return new ResponseEntity<>(cars, HttpStatus.OK);
     }
 
 }

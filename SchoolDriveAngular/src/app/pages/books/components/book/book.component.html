@@ -1,0 +1,77 @@
+<div class="container">
+  <div class="background">
+    <div *ngIf="stage===0" class="choose-container">
+      <h1>Wybierz instruktora</h1>
+      <div class="select">
+        <select class="form-control" [(ngModel)]="newReservation.instructor">
+          <option *ngFor="let inst of instructors" [ngValue]="inst">{{inst.firstname}} {{inst.lastname}}</option>
+        </select>
+
+        <button class="btn btn-info btn-customized" (click)="toCarStage()">Dalej</button>
+
+        <p class="errorMsg">{{errorMsg}}</p>
+      </div>
+    </div>
+    <div *ngIf="stage===1" class="choose-container">
+      <h1>Wybierz samochód</h1>
+      <div class="select">
+        <select class="form-control" [(ngModel)]="newReservation.car">
+          <option *ngFor="let car of cars" [ngValue]="car">{{car.brand}} {{car.model}} {{car.engineCapacity}}</option>
+        </select>
+
+        <button class="btn btn-info btn-customized" (click)="toDateStage()">Dalej</button>
+
+        <p class="errorMsg">{{errorMsg}}</p>
+      </div>
+    </div>
+    <div *ngIf="stage===2" class="choose-container">
+      <h1>Wybierz date</h1>
+      <div class="select">
+        <!--<input type="date" class="form-control" [ngModel]="dt | date:'yyyy-MM-dd'"> -->
+        <input type="date" class="form-control" [ngModel]="newReservation.day" (ngModelChange)="changeDate($event)">
+
+        <button class="btn btn-info btn-customized" (click)="toTimeStage()">Dalej</button>
+
+        <p class="errorMsg">{{errorMsg}}</p>
+      </div>
+    </div>
+
+    <div *ngIf="stage===3" class="choose-container">
+      <h1>Wybierz godzinę</h1>
+      <div class="select">
+        <select class="form-control" [(ngModel)]="newReservation.hoursInterval">
+          <option *ngFor="let interval of hourIntervals" [disabled]="checkIfReserved(interval)" [ngValue]="interval">
+            {{interval.startTime}} - {{interval.endTime}}
+          </option>
+        </select>
+
+        <button class="btn btn-info btn-customized" (click)="toSummary()">Dalej</button>
+        <p class="errorMsg">{{errorMsg}}</p>
+      </div>
+    </div>
+
+    <div *ngIf="stage===4" class="summary-container">
+      <h1>Podsumowanie</h1>
+      <div class="row">
+        <div class="col-md">
+          <p><span class="bold">Instruktor:</span> {{newReservation.instructor.firstname}} {{newReservation.instructor.lastname}}</p>
+        </div>
+        <div class="col-md">
+          <p><span class="bold">Samochód:</span> {{newReservation.car.brand}} {{newReservation.car.model}}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md">
+          <p><span class="bold">Godziny:</span> {{newReservation.hoursInterval.startTime}} - {{newReservation.hoursInterval.endTime}}</p>
+        </div>
+        <div class="col-md">
+          <p><span class="bold">Dzień:</span> {{newReservation.day}}</p>
+        </div>
+      </div>
+      <div class="row buttons">
+        <button class="btn btn-info btn-customized" (click)="toSummary()">Zarezerwuj</button>
+        <button class="btn btn-danger btn-customized" (click)="toSummary()">Zrezygnuj</button>
+      </div>
+    </div>
+  </div>
+</div>

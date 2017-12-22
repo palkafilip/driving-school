@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {DriveBooking} from "../../../../classes/drive-booking";
+import {DriveBookingPresentation} from "../../../../classes/drive-booking-presentation";
 import {DrivebookService} from "../../service/drivebook.service";
-import {DateUtilsService} from "../../../../utils/date-utils.service";
+import {DateUtilsService} from "../../../../service/date-utils.service";
 
 @Component({
   selector: 'app-incoming',
@@ -10,7 +10,7 @@ import {DateUtilsService} from "../../../../utils/date-utils.service";
 })
 export class IncomingComponent implements OnInit {
 
-  drives: DriveBooking[] = [];
+  drives: DriveBookingPresentation[] = [];
 
   constructor(
     private drivebookService: DrivebookService,

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {DrivebookService} from "../../service/drivebook.service";
-import {DriveBooking} from "../../../../classes/drive-booking";
-import {DateUtilsService} from "../../../../utils/date-utils.service";
+import {DriveBookingPresentation} from "../../../../classes/drive-booking-presentation";
+import {DateUtilsService} from "../../../../service/date-utils.service";
 
 @Component({
   selector: 'app-historical',
@@ -10,7 +10,7 @@ import {DateUtilsService} from "../../../../utils/date-utils.service";
 })
 export class HistoricalComponent implements OnInit {
 
-  drives: DriveBooking[] = [];
+  drives: DriveBookingPresentation[] = [];
 
   constructor(
     private drivebookService: DrivebookService,

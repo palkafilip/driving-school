@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {HomeService} from "../services/home.service";
-import {DriveBooking} from "../../../classes/drive-booking";
+import {DriveBookingPresentation} from "../../../classes/drive-booking-presentation";
 
 @Component({
   selector: 'app-home',
@@ -9,7 +9,7 @@ import {DriveBooking} from "../../../classes/drive-booking";
 })
 export class HomeComponent implements OnInit {
 
-  drives: DriveBooking[] = [];
+  drives: DriveBookingPresentation[] = [];
 
   constructor(private homeService: HomeService) { }
 

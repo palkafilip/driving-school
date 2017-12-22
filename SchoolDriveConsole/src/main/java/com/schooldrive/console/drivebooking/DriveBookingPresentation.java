@@ -2,6 +2,7 @@ package com.schooldrive.console.drivebooking;
 
 import com.schooldrive.console.car.CarPresentation;
 import com.schooldrive.console.instructor.InstructorPresentation;
+import com.schooldrive.logic.hoursinterval.HoursIntervalPresentation;
 import com.schooldrive.logic.user.UserPresentation;
 import com.schooldrive.logic.utils.DateUtils;
 import com.schooldrive.persistence.drivebooking.DriveBooking;
@@ -15,9 +16,8 @@ public class DriveBookingPresentation {
     private UserPresentation user;
     private InstructorPresentation instructor;
     private CarPresentation car;
+    private HoursIntervalPresentation hoursInterval;
     private String day;
-    private String startTime;
-    private String endTime;
 
     public DriveBookingPresentation(DriveBooking driveBooking) {
         this.id = driveBooking.getId();
@@ -25,8 +25,7 @@ public class DriveBookingPresentation {
         this.instructor = new InstructorPresentation(driveBooking.getInstructor());
         this.car = new CarPresentation(driveBooking.getCar());
         this.day = DateUtils.dateWithoutTime().format(driveBooking.getDay());
-        this.startTime = driveBooking.getStartTime();
-        this.endTime = driveBooking.getEndTime();
+        this.hoursInterval = new HoursIntervalPresentation(driveBooking.getHoursInterval());
     }
 
     public Integer getId() {
@@ -69,19 +68,11 @@ public class DriveBookingPresentation {
         this.day = day;
     }
 
-    public String getStartTime() {
-        return startTime;
+    public HoursIntervalPresentation getHoursInterval() {
+        return hoursInterval;
     }
 
-    public void setStartTime(String startTime) {
-        this.startTime = startTime;
-    }
-
-    public String getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(String endTime) {
-        this.endTime = endTime;
+    public void setHoursInterval(HoursIntervalPresentation hoursInterval) {
+        this.hoursInterval = hoursInterval;
     }
 }
