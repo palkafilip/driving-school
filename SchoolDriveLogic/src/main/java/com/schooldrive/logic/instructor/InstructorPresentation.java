@@ -1,4 +1,4 @@
-package com.schooldrive.console.instructor;
+package com.schooldrive.logic.instructor;
 
 import com.schooldrive.persistence.instructor.Instructor;
 
@@ -12,6 +12,9 @@ public class InstructorPresentation {
     private String lastname;
     private String phone;
     private String email;
+
+    public InstructorPresentation() {
+    }
 
     public InstructorPresentation(Instructor instructor) {
         this.id = instructor.getId();

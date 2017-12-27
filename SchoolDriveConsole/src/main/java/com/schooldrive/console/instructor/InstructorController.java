@@ -1,6 +1,8 @@
 package com.schooldrive.console.instructor;
 
+import com.schooldrive.logic.instructor.InstructorPresentation;
 import com.schooldrive.logic.instructor.InstructorService;
+import com.schooldrive.logic.instructorrating.InstructorRatingPresentation;
 import com.schooldrive.logic.instructorrating.InstructorRatingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

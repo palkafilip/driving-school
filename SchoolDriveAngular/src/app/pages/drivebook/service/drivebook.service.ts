@@ -27,4 +27,16 @@ export class DrivebookService {
       .GET(URL);
   }
 
+  getDriveById(id: number): Observable<any> {
+    const URL: string = `drives/drive/${id}`;
+    return this.rest
+      .GET(URL);
+  }
+
+  deleteBook(id: number): Observable<any> {
+    const URL: string = `drives/drive/${id}`;
+    return this.rest
+      .DELETE(URL);
+  }
+
 }

@@ -26,8 +26,8 @@ public class DriveBookingDAOImpl implements DriveBookingDAO {
     }
 
     @Override
-    public void addDriveBooking(DriveBooking driveBooking) {
-        em.merge(driveBooking);
+    public DriveBooking addDriveBooking(DriveBooking driveBooking) {
+        return em.merge(driveBooking);
     }
 
     @Override
@@ -46,5 +46,29 @@ public class DriveBookingDAOImpl implements DriveBookingDAO {
         query.setParameter("cid", carId);
         query.setParameter("iday", inputDay);
         return query.getResultList();
+    }
+
+    @Override
+    public Long getBookCountByUserDayHours(Integer userId, Integer hourIntervalId, Date day) {
+        String jpqlQuery = "SELECT COUNT(db) from DriveBooking db where db.user.id = :uid and db.hoursInterval.id = :hid and db.day = :day";
+        TypedQuery<Long> query = em.createQuery(jpqlQuery, Long.class);
+        query.setParameter("uid", userId);
+        query.setParameter("hid", hourIntervalId);
+        query.setParameter("day", day);
+        return query.getSingleResult();
+    }
+
+    @Override
+    public DriveBooking getDriveById(Integer id) {
+        return em.find(DriveBooking.class, id);
+    }
+
+    @Override
+    public void deleteBook(DriveBooking drive) {
+        drive.setCar(null);
+        drive.setUser(null);
+        drive.setInstructor(null);
+        drive.setHoursInterval(null);
+        em.remove(drive);
     }
 }

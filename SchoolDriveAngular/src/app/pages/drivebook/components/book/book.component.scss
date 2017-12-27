@@ -35,6 +35,11 @@
         width: 400px;
         margin: 0 auto;
 
+        h2 {
+          font-size: 1.2rem;
+          padding: 10px 0;
+        }
+
         select, input {
           cursor: pointer;
           margin: 40px 0 10px;

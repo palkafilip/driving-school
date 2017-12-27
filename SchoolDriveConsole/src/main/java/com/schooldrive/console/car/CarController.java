@@ -1,5 +1,6 @@
 package com.schooldrive.console.car;
 
+import com.schooldrive.logic.car.CarPresentation;
 import com.schooldrive.logic.car.CarService;
 import com.schooldrive.logic.car.CarServiceException;
 import org.springframework.beans.factory.annotation.Autowired;

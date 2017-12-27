@@ -32,6 +32,15 @@ export class RestService {
       .catch(err => this.handleError(err));
   }
 
+  DELETE(resource: string): Observable<any> {
+    const url = this.ORIGIN + resource;
+
+    return this.http
+      .delete(url, { withCredentials: true })
+      .map(res => this.extractData(res))
+      .catch(err => this.handleError(err));
+  }
+
   POSTWithAuthorization(resource: string, login: string, password: string, params: any) {
 
     const url = this.ORIGIN + resource;

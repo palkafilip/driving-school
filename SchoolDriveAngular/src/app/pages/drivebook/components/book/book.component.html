@@ -3,7 +3,7 @@
     <div *ngIf="stage===0" class="choose-container">
       <h1>Wybierz instruktora</h1>
       <div class="select">
-        <select class="form-control" [(ngModel)]="newReservation.instructor">
+        <select class="form-control" [(ngModel)]="reservation.instructor">
           <option *ngFor="let inst of instructors" [ngValue]="inst">{{inst.firstname}} {{inst.lastname}}</option>
         </select>
 
@@ -15,7 +15,7 @@
     <div *ngIf="stage===1" class="choose-container">
       <h1>Wybierz samochód</h1>
       <div class="select">
-        <select class="form-control" [(ngModel)]="newReservation.car">
+        <select class="form-control" [(ngModel)]="reservation.car">
           <option *ngFor="let car of cars" [ngValue]="car">{{car.brand}} {{car.model}} {{car.engineCapacity}}</option>
         </select>
 
@@ -28,7 +28,7 @@
       <h1>Wybierz date</h1>
       <div class="select">
         <!--<input type="date" class="form-control" [ngModel]="dt | date:'yyyy-MM-dd'"> -->
-        <input type="date" class="form-control" [ngModel]="newReservation.day" (ngModelChange)="changeDate($event)">
+        <input type="date" class="form-control" [ngModel]="reservation.day" (ngModelChange)="changeDate($event)">
 
         <button class="btn btn-info btn-customized" (click)="toTimeStage()">Dalej</button>
 
@@ -39,7 +39,7 @@
     <div *ngIf="stage===3" class="choose-container">
       <h1>Wybierz godzinę</h1>
       <div class="select">
-        <select class="form-control" [(ngModel)]="newReservation.hoursInterval">
+        <select class="form-control" [(ngModel)]="reservation.hoursInterval">
           <option *ngFor="let interval of hourIntervals" [disabled]="checkIfReserved(interval)" [ngValue]="interval">
             {{interval.startTime}} - {{interval.endTime}}
           </option>
@@ -54,23 +54,32 @@
       <h1>Podsumowanie</h1>
       <div class="row">
         <div class="col-md">
-          <p><span class="bold">Instruktor:</span> {{newReservation.instructor.firstname}} {{newReservation.instructor.lastname}}</p>
+          <p><span class="bold">Instruktor:</span> {{reservation.instructor.firstname}}
+            {{reservation.instructor.lastname}}</p>
         </div>
         <div class="col-md">
-          <p><span class="bold">Samochód:</span> {{newReservation.car.brand}} {{newReservation.car.model}}</p>
+          <p><span class="bold">Samochód:</span> {{reservation.car.brand}} {{reservation.car.model}}</p>
         </div>
       </div>
       <div class="row">
         <div class="col-md">
-          <p><span class="bold">Godziny:</span> {{newReservation.hoursInterval.startTime}} - {{newReservation.hoursInterval.endTime}}</p>
+          <p><span class="bold">Godziny:</span> {{reservation.hoursInterval.startTime}} -
+            {{reservation.hoursInterval.endTime}}</p>
         </div>
         <div class="col-md">
-          <p><span class="bold">Dzień:</span> {{newReservation.day}}</p>
+          <p><span class="bold">Dzień:</span> {{reservation.day}}</p>
         </div>
       </div>
       <div class="row buttons">
-        <button class="btn btn-info btn-customized" (click)="toSummary()">Zarezerwuj</button>
-        <button class="btn btn-danger btn-customized" (click)="toSummary()">Zrezygnuj</button>
+        <button class="btn btn-info btn-customized" (click)="reserveBook()">Zarezerwuj</button>
+        <button class="btn btn-danger btn-customized" routerLink="/pages">Zrezygnuj</button>
+      </div>
+    </div>
+
+    <div *ngIf="stage===5" class="choose-container">
+      <div class="select">
+        <h2>{{responseMsg}}</h2>
+        <button class="btn btn-info btn-customized" routerLink="/pages">Powrót</button>
       </div>
     </div>
   </div>

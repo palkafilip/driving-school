@@ -1,8 +1,12 @@
 package com.schooldrive.console.drivebooking;
 
 import com.schooldrive.logic.car.CarServiceException;
+import com.schooldrive.logic.drivebooking.DriveBookingPresentation;
+import com.schooldrive.logic.drivebooking.DriveBookingRequest;
 import com.schooldrive.logic.drivebooking.DriveBookingService;
+import com.schooldrive.logic.drivebooking.DriveBookingServiceException;
 import com.schooldrive.logic.hoursinterval.HoursIntervalPresentation;
+import com.schooldrive.logic.user.UserServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +31,7 @@ public class DrivesController {
     }
 
     @RequestMapping(value = "/{userId}/all", method = RequestMethod.GET)
-    public ResponseEntity<?> getUsers(@PathVariable Integer userId) throws CarServiceException {
+    public ResponseEntity<?> getByUserId(@PathVariable Integer userId) throws CarServiceException {
 
         List<DriveBookingPresentation> drivesList = driveBookingService
                 .getAllByUserId(userId)
@@ -37,6 +41,23 @@ public class DrivesController {
 
         return new ResponseEntity<>(drivesList, HttpStatus.OK);
     }
+    @RequestMapping(value = "/drive/{driveId}", method = RequestMethod.GET)
+    public ResponseEntity<?> getById(@PathVariable Integer driveId) {
+
+        DriveBookingPresentation driveBookingPresentation = new DriveBookingPresentation(driveBookingService
+                .getById(driveId));
+
+        return new ResponseEntity<>(driveBookingPresentation, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/drive/{driveId}", method = RequestMethod.DELETE)
+    public ResponseEntity<?> deleteDrive(@PathVariable Integer driveId) {
+
+        driveBookingService.deleteDriveBook(driveId);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 
     @RequestMapping(value = "/reserved", method = RequestMethod.GET)
     public ResponseEntity<?> getReservedHoursInDay(@RequestParam Integer instructorId,
@@ -52,7 +73,13 @@ public class DrivesController {
         return new ResponseEntity<>(takenHours, HttpStatus.OK);
     }
 
-//    @RequestMapping(value = "/new/book", method = RequestMethod.POST)
-//    public ResponseEntity<?> bookDrive()
+    @RequestMapping(value = "/new/book", method = RequestMethod.POST)
+    public ResponseEntity<?> bookDrive(@RequestBody DriveBookingPresentation newDrive) throws ParseException, UserServiceException, CarServiceException, DriveBookingServiceException {
+
+        DriveBookingPresentation bookConfirmation =
+                new DriveBookingPresentation(driveBookingService.bookDrive(newDrive));
+
+        return new ResponseEntity<>(bookConfirmation, HttpStatus.OK);
+    }
 
 }

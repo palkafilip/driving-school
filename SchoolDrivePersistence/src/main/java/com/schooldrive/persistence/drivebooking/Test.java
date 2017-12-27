@@ -47,6 +47,6 @@ public class Test {
             e.printStackTrace();
         }
 
-        System.out.println(driveBookingDAO.getTakenHoursInDayByInstructorCarDay(1, 1, d));
+//        System.out.println(driveBookingDAO.getBookByUserDayHours(2, 4, d));
     }
 }

@@ -1,5 +1,6 @@
-package com.schooldrive.console.instructor;
+package com.schooldrive.logic.instructorrating;
 
+import com.schooldrive.logic.instructor.InstructorPresentation;
 import com.schooldrive.logic.user.UserPresentation;
 import com.schooldrive.logic.utils.DateUtils;
 import com.schooldrive.persistence.instructorrating.InstructorRating;
@@ -15,6 +16,9 @@ public class InstructorRatingPresentation {
     private String comment;
     private Integer rate;
     private String date;
+
+    public InstructorRatingPresentation() {
+    }
 
     public InstructorRatingPresentation(InstructorRating instructorRating) {
         this.id = instructorRating.getId();

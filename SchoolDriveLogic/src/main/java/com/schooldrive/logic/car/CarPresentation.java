@@ -1,4 +1,4 @@
-package com.schooldrive.console.car;
+package com.schooldrive.logic.car;
 
 import com.schooldrive.logic.utils.DateUtils;
 import com.schooldrive.persistence.car.Car;
@@ -16,6 +16,9 @@ public class CarPresentation {
     private String year;
     private Integer engineCapacity;
     private String fuelType;
+
+    public CarPresentation() {
+    }
 
     public CarPresentation(Car car) {
         this.id = car.getId();

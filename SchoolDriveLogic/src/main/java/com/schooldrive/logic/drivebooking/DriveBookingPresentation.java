@@ -1,7 +1,7 @@
-package com.schooldrive.console.drivebooking;
+package com.schooldrive.logic.drivebooking;
 
-import com.schooldrive.console.car.CarPresentation;
-import com.schooldrive.console.instructor.InstructorPresentation;
+import com.schooldrive.logic.car.CarPresentation;
+import com.schooldrive.logic.instructor.InstructorPresentation;
 import com.schooldrive.logic.hoursinterval.HoursIntervalPresentation;
 import com.schooldrive.logic.user.UserPresentation;
 import com.schooldrive.logic.utils.DateUtils;
@@ -18,6 +18,9 @@ public class DriveBookingPresentation {
     private CarPresentation car;
     private HoursIntervalPresentation hoursInterval;
     private String day;
+
+    public DriveBookingPresentation() {
+    }
 
     public DriveBookingPresentation(DriveBooking driveBooking) {
         this.id = driveBooking.getId();

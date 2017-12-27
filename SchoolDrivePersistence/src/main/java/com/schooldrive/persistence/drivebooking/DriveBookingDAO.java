@@ -8,7 +8,10 @@ import java.util.List;
  */
 public interface DriveBookingDAO {
 
-    void addDriveBooking(DriveBooking driveBooking);
+    DriveBooking addDriveBooking(DriveBooking driveBooking);
     List<DriveBooking> getAllDrivesByUserId(Integer id);
     List<DriveBooking> getTakenHoursInDayByInstructorCarDay(Integer instructorId, Integer carId, Date day);
+    Long getBookCountByUserDayHours(Integer userId, Integer hourIntervalId, Date day);
+    DriveBooking getDriveById(Integer id);
+    void deleteBook(DriveBooking drive);
 }

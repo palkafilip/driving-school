@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {DriveBookingPresentation} from "../../../../classes/drive-booking-presentation";
 import {DateUtilsService} from "../../../../service/date-utils.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-drivebook',
@@ -14,6 +15,7 @@ export class DrivebookComponent implements OnInit {
 
   constructor(
     private dateUtils: DateUtilsService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -30,5 +32,16 @@ export class DrivebookComponent implements OnInit {
 
   convertTimeToHoursAndMinutes(date: string): string {
     return this.dateUtils.convertTimeToHoursAndMinutes(date);
+  }
+
+  goToDetails(id: number) {
+
+    if(this.dateUtils.compareWithToday(this.drive.day)) {
+      this.router
+        .navigate(['pages/drivebooks/incoming', id]);
+    } else {
+      this.router
+        .navigate(['pages/drivebooks/historical', id]);
+    }
   }
 }

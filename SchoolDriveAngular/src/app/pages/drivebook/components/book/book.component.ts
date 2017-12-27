@@ -1,11 +1,10 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Instructor} from "../../../../classes/instructor";
 import {BookService} from "../../service/book.service";
 import {Car} from "../../../../classes/car";
 import {DateUtilsService} from "../../../../service/date-utils.service";
 import {HoursInterval} from "../../../../classes/hours-interval";
 import {Subscription} from "rxjs/Subscription";
-import {DriveBooking} from "../../classes/drive-booking";
 import {DriveBookingPresentation} from "../../../../classes/drive-booking-presentation";
 import {LoggedUserService} from "../../../../service/logged-user.service";
 
@@ -23,16 +22,14 @@ export class BookComponent implements OnInit, OnDestroy {
   hourIntervals: HoursInterval[] = [];
   reservedHourIntervals: HoursInterval[] = [];
 
-  newReservationRequest: DriveBooking;
-  newReservation: DriveBookingPresentation;
+  @Input()
+  reservation: DriveBookingPresentation;
 
-  instructorId: number;
-  carId: number;
-  hourIntervalId: number;
   date: string;
 
   stage: number = 0;
   errorMsg: string;
+  responseMsg: string;
 
   constructor(
     private bookService: BookService,
@@ -41,8 +38,9 @@ export class BookComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.initializeBookingPresentation();
-
+    if(!this.reservation) {
+      this.initializeBookingPresentation();
+    }
     this.getAllInstructors();
     this.date = this.dateService.getTodaysDate();
     this.subscriptions
@@ -56,16 +54,18 @@ export class BookComponent implements OnInit, OnDestroy {
   }
 
   initializeBookingPresentation() {
-    this.newReservation = new DriveBookingPresentation();
-    this.newReservation.day = this.dateService.getTodaysDate();
-    this.newReservation.user = this.loggedService.getLoggedUser();
+    this.reservation = new DriveBookingPresentation();
+    this.reservation.day = this.dateService.getTodaysDate();
+    this.reservation.user = this.loggedService.getLoggedUser();
   }
   // Methods communicating with booking service
   getAllInstructors() {
     this.subscriptions
       .add(
         this.bookService.getAllInstructors()
-          .subscribe(instructors => this.instructors = instructors)
+          .subscribe(instructors => {
+            this.instructors = instructors
+          })
       );
   }
 
@@ -79,7 +79,7 @@ export class BookComponent implements OnInit, OnDestroy {
 
   // Stages in process of booking drive
   toCarStage() {
-    if(!this.newReservation.instructor) {
+    if(!this.reservation.instructor) {
       return this.errorMsg = 'Aby przejść dalej, wybierz instruktora';
     }
     this.getAllCars();
@@ -88,7 +88,7 @@ export class BookComponent implements OnInit, OnDestroy {
   }
 
   toDateStage() {
-    if(!this.newReservation.car) {
+    if(!this.reservation.car) {
       return this.errorMsg = 'Aby przejść dalej, wybierz samochód';
     }
     this.errorMsg = '';
@@ -96,11 +96,11 @@ export class BookComponent implements OnInit, OnDestroy {
   }
 
   toTimeStage() {
-    if(!this.newReservation.day) {
+    if(!this.reservation.day) {
       return this.errorMsg = 'Aby przejść dalej, wybierz dzień';
     }
     this.bookService
-      .getReservedHourIntervals(this.newReservation.instructor.id, this.newReservation.car.id, this.newReservation.day)
+      .getReservedHourIntervals(this.reservation.instructor.id, this.reservation.car.id, this.reservation.day)
       .subscribe(reserved => {
         this.reservedHourIntervals = reserved
         console.log(reserved);
@@ -110,17 +110,27 @@ export class BookComponent implements OnInit, OnDestroy {
   }
 
   toSummary() {
-    if(!this.newReservation.hoursInterval) {
+    if(!this.reservation.hoursInterval) {
       return this.errorMsg = 'Aby przejść dalej, wybierz godziny';
     }
     this.errorMsg = '';
-
 
     this.stage = 4;
   }
 
   reserveBook() {
-
+    this.bookService
+      .bookDrive(this.reservation)
+      .subscribe(
+        res => {
+          this.stage = 5;
+          this.responseMsg = 'Rezerwacja przebiegła pomyślnie';
+        },
+        err => {
+          this.stage = 5;
+          this.responseMsg = JSON.parse(err['_body']).exceptionMessage;
+        }
+      );
   }
 
   // Utility methods manipulating data to display
@@ -132,7 +142,7 @@ export class BookComponent implements OnInit, OnDestroy {
   }
 
   changeDate(event) {
-    this.newReservation.day = event;
+    this.reservation.day = event;
   }
 
   private getRidOfSeconds(hourInterval: HoursInterval[]) {
@@ -148,16 +158,16 @@ export class BookComponent implements OnInit, OnDestroy {
     return hourInterval;
   }
 
-  convertBookFromPresentationToRequest(presentation: DriveBookingPresentation) {
-    let request = new DriveBooking();
-    request.userId = presentation.user.id;
-    request.instructorId = presentation.instructor.id;
-    request.carId = presentation.car.id;
-    request.hoursIntervalId = presentation.hoursInterval.id;
-    request.day = presentation.day;
-
-    return request;
-  }
+  // convertBookFromPresentationToRequest(presentation: DriveBookingPresentation) {
+  //   let request = new DriveBooking();
+  //   request.userId = presentation.user.id;
+  //   request.instructorId = presentation.instructor.id;
+  //   request.carId = presentation.car.id;
+  //   request.hoursIntervalId = presentation.hoursInterval.id;
+  //   request.day = presentation.day;
+  //
+  //   return request;
+  // }
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();

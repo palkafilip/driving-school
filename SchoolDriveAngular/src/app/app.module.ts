@@ -8,6 +8,7 @@ import {MenuService} from "./service/menu.service";
 import {LoggedUserService} from "./service/logged-user.service";
 import {AuthenticatedGuardService} from "./service/authenticated-guard.service";
 import {DateUtilsService} from "./service/date-utils.service";
+import {StoreService} from "./service/store.service";
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import {DateUtilsService} from "./service/date-utils.service";
     LoggedUserService,
     AuthenticatedGuardService,
     DateUtilsService,
+    StoreService,
   ],
   bootstrap: [AppComponent]
 })

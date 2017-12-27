@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="background">
+    <div *ngIf="drive" class="book-info">
+      <div class="header">
+        <h1>Jazda dnia {{drive.day}}</h1>
+        <h2>{{drive.hoursInterval.startTime}} - {{drive.hoursInterval.endTime}}</h2>
+      </div>
+      <div class="body">
+        <div class="body-item">
+          <h2>Instruktor:</h2>
+          <p>{{drive.instructor.firstname}} {{drive.instructor.lastname}}</p>
+          <p>Telefon: {{drive.instructor.phone}}</p>
+          <p>Emal: {{drive.instructor.email}}</p>
+
+          <div class="buttons">
+            <button *ngIf="type === 'historical'" class="btn btn-info btn-customized">Oceń instruktora</button>
+            <button *ngIf="type === 'incoming'" class="btn btn-edit btn-customized" (click)="goToEdit(drive.id)">Edytuj</button>
+            <button *ngIf="type === 'incoming'" class="btn btn-cancel btn-customized" (click)="openModal(template)">Odwołaj</button>
+          </div>
+        </div>
+
+        <ng-template #template>
+          <div class="modal-body text-center">
+            <p>Jesteś pewien, że chcesz odwołać jazdę??</p>
+            <button type="button" class="btn btn-edit btn-customized" (click)="confirm()" >Tak</button>
+            <button type="button" class="btn btn-cancel btn-customized" (click)="decline()" >Nie</button>
+          </div>
+        </ng-template>
+
+        <div class="body-item">
+          <h2>Samochód</h2>
+          <p>{{drive.car.brand}} {{drive.car.model}}</p>
+          <p>Rok: {{drive.car.year}}</p>
+          <p>Silnik: {{drive.car.engineCapacity}} {{drive.car.fuelType}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

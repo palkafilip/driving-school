@@ -1,0 +1,78 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+
+  .background {
+    margin-top: 80px;
+    background-color: #eff3f5;
+    padding: 10px;
+    border-radius: 4px;
+    width: 100%;
+
+    .book-info {
+      background: #ffffff;
+      border: 1px solid #d9d9d9;
+      //padding: 50px 200px;
+
+      h1 {
+        font-size: 1.5rem
+      }
+
+      h2 {
+        font-size: 1.2rem;
+      }
+
+      .header {
+        text-align: center;
+        padding: 50px;
+      }
+
+      .body {
+        display: flex;
+        justify-content: center;
+        padding-bottom: 50px;
+
+        .body-item {
+          padding: 0 40px;
+
+          .buttons {
+            margin: 10px 0;
+          }
+        }
+
+        .btn-edit {
+          color: #fff;
+          background-color: #3286ce;
+        }
+
+        .btn-edit:hover {
+          background-color: #2d71b4;
+        }
+
+        .btn-cancel {
+          color: #fff;
+          background-color: #d45654;
+        }
+
+        .btn-cancel:hover {
+          background-color: #c55250;
+        }
+      }
+    }
+  }
+
+  .btn-customized {
+    margin: 15px 0;
+    padding: 5px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
+}

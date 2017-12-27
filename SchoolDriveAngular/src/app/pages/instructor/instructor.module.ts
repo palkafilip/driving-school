@@ -14,6 +14,8 @@ import { InstructorDetailsComponent } from './components/instructor-details/inst
     SearchInstructorComponent,
     InstructorDetailsComponent
   ],
-  providers: [InstructorService]
+  providers: [
+    InstructorService,
+  ]
 })
 export class InstructorModule { }

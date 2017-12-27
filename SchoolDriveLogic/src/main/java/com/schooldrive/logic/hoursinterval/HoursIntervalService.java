@@ -23,4 +23,8 @@ public class HoursIntervalService {
     public List<HoursInterval> getAllHourIntervals() {
         return this.hoursIntervalDAO.getAllHourIntervals();
     }
+
+    public HoursInterval getHoursIntervalById(Integer id) {
+        return this.hoursIntervalDAO.getHoursIntervalById(id);
+    }
 }

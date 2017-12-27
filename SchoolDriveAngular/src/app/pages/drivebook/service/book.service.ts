@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {RestService} from "../../../service/rest.service";
 import {Observable} from "rxjs/Observable";
-import {DriveBooking} from "../classes/drive-booking";
+import {DriveBookingPresentation} from "../../../classes/drive-booking-presentation";
 
 @Injectable()
 export class BookService {
@@ -34,8 +34,10 @@ export class BookService {
       .GET(URL);
   }
 
-  bookDrive(bookInfo: DriveBooking) {
-
+  bookDrive(bookInfo: DriveBookingPresentation) {
+    const URL = 'drives/new/book';
+    return this.rest
+      .POST(URL, bookInfo);
   }
 
 }

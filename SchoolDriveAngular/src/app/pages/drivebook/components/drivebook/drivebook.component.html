@@ -3,5 +3,5 @@
   <p class="info"><span class="bold">Dzień:</span> {{drive.day}}</p>
   <p class="info"><span class="bold">Godzina:</span> {{convertTimeToHoursAndMinutes(drive.hoursInterval.startTime)}} - {{convertTimeToHoursAndMinutes(drive.hoursInterval.endTime)}}</p>
   <p class="info"><span class="bold">Instruktor:</span> {{capitalizeFirstLetters(drive.instructor.firstname, drive.instructor.lastname)}}</p>
-  <p class="button"><a href="#">Zobacz jazdę</a></p>
+  <p class="button"><a (click)="goToDetails(drive.id)">Zobacz jazdę</a></p>
 </div>

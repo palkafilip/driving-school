@@ -14,3 +14,39 @@ body {
 .bufor {
   padding: 25px;
 }
+
+button {
+  cursor: pointer;
+}
+
+.modal-customized {
+  p {
+    padding: 15px;
+  }
+
+  .btn {
+    padding: 5px 15px;
+  }
+
+  .btn-edit {
+    color: #fff;
+    background-color: #3286ce;
+  }
+
+  .btn-edit:hover {
+    background-color: #2d71b4;
+  }
+
+  .btn-cancel {
+    color: #fff;
+    background-color: #d45654;
+  }
+
+  .btn-cancel:hover {
+    background-color: #c55250;
+  }
+
+  .modal-body {
+      padding: 15px;
+  }
+}
