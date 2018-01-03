@@ -16,8 +16,8 @@ public class HoursIntervalPresentation {
 
     public HoursIntervalPresentation(HoursInterval hoursInterval) {
         this.id = hoursInterval.getId();
-        this.startTime = hoursInterval.getStartTime();
-        this.endTime = hoursInterval.getEndTime();
+        this.startTime = removeMiliseconds(hoursInterval.getStartTime());
+        this.endTime = removeMiliseconds(hoursInterval.getEndTime());
     }
 
     public Integer getId() {
@@ -30,5 +30,10 @@ public class HoursIntervalPresentation {
 
     public String getEndTime() {
         return endTime;
+    }
+
+    private String removeMiliseconds(String hour) {
+        String[] splitted = hour.split(":");
+        return splitted[0] + ":" + splitted[1];
     }
 }

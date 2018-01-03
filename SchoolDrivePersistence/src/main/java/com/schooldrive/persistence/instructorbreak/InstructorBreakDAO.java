@@ -1,5 +1,6 @@
 package com.schooldrive.persistence.instructorbreak;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -9,4 +10,5 @@ public interface InstructorBreakDAO {
 
     InstructorBreak getInstructorBreakById(Integer id);
     List<InstructorBreak> getAllInstructorBreaksByInstructorId(Integer instructorId);
+    List<InstructorBreak> getInstruktorBreakByIntructorAndDay(Integer instructorId, Date day);
 }

@@ -70,4 +70,22 @@ public class InstructorBreak {
                 ", day=" + day +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        InstructorBreak that = (InstructorBreak) o;
+
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        return day != null ? day.equals(that.day) : that.day == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (day != null ? day.hashCode() : 0);
+        return result;
+    }
 }

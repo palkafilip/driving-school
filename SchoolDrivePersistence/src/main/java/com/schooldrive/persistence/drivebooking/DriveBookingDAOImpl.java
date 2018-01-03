@@ -1,6 +1,7 @@
 package com.schooldrive.persistence.drivebooking;
 
 import com.schooldrive.persistence.car.Car;
+import com.schooldrive.persistence.hoursinterval.HoursInterval;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,7 +41,7 @@ public class DriveBookingDAOImpl implements DriveBookingDAO {
 
     @Override
     public List<DriveBooking> getTakenHoursInDayByInstructorCarDay(Integer instructorId, Integer carId, Date inputDay) {
-        String jpqlQuery = "SELECT db from DriveBooking db where db.instructor.id = :iid and db.car.id = :cid and db.day = :iday";
+        String jpqlQuery = "SELECT db from DriveBooking db where db.day = :iday and db.instructor.id = :iid or db.day = :iday and db.car.id = :cid";
         TypedQuery<DriveBooking> query = em.createQuery(jpqlQuery, DriveBooking.class);
         query.setParameter("iid", instructorId);
         query.setParameter("cid", carId);

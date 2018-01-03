@@ -94,4 +94,6 @@ public class CarRating {
                 ", date=" + date +
                 '}';
     }
+
+
 }

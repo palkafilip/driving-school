@@ -1,0 +1,93 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  margin: 0 auto;
+
+  textarea {
+    padding: 5px 10px;
+    font-size: 0.8rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+    margin: 20px 0;
+  }
+  .rate-exist {
+    margin-top: 80px;
+  }
+
+  .rates {
+    display: flex;
+    flex-direction: column;
+    background-color: #f7f7f7;
+    border: 1px solid #e7e7e7;
+    -webkit-box-shadow: 2px 2px 12px -5px rgba(0,0,0,0.5);
+    -moz-box-shadow: 2px 2px 12px -5px rgba(0,0,0,0.5);
+    box-shadow: 2px 2px 12px -5px rgba(0,0,0,0.5);
+    margin: 20px 0;
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+      background-color: #ffffff;
+      border-bottom: 1px solid #e7e7e7;
+      padding: 10px 20px;
+
+      p {
+        font-size: 0.8rem;
+        font-weight: 700;
+      }
+    }
+
+    .comment {
+      padding: 20px;
+
+      p {
+        font-size: 0.9rem;
+        font-style: italic;
+      }
+
+      .author {
+        font-size: 0.8rem;
+        font-style: normal;
+      }
+    }
+  }
+  .background {
+    margin-top: 40px;
+    background-color: #eff3f5;
+    padding: 10px;
+    border-radius: 4px;
+    width: 100%;
+
+    .rate-instructor {
+      background: #ffffff;
+      border: 1px solid #d9d9d9;
+      padding: 50px 200px;
+
+      h2 {
+        font-size: 1.2rem;
+        margin: 10px 0;
+      }
+      .rate {
+        margin: 20px 0;
+      }
+    }
+  }
+
+  .btn-customized {
+    margin: 15px 0;
+    padding: 5px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
+}

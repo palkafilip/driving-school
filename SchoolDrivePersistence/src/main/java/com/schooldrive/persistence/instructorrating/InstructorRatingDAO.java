@@ -9,4 +9,5 @@ public interface InstructorRatingDAO {
 
     void addInstructorRating(InstructorRating instructorRating);
     List<InstructorRating> getByInstructorId(Integer instructorId);
+    InstructorRating getByIntructorAndUser(Integer instructorId, Integer userId);
 }

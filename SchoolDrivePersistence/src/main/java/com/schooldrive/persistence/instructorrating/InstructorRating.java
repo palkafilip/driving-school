@@ -82,4 +82,26 @@ public class InstructorRating {
     public void setDate(Date date) {
         this.date = date;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        InstructorRating that = (InstructorRating) o;
+
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (comment != null ? !comment.equals(that.comment) : that.comment != null) return false;
+        if (rate != null ? !rate.equals(that.rate) : that.rate != null) return false;
+        return date != null ? date.equals(that.date) : that.date == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (comment != null ? comment.hashCode() : 0);
+        result = 31 * result + (rate != null ? rate.hashCode() : 0);
+        result = 31 * result + (date != null ? date.hashCode() : 0);
+        return result;
+    }
 }

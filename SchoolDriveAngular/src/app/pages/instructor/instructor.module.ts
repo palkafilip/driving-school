@@ -4,6 +4,7 @@ import { SearchInstructorComponent } from './components/search-instructor/search
 import {InstructorService} from "./service/instructor.service";
 import {SharedModule} from "../../shared/shared.module";
 import { InstructorDetailsComponent } from './components/instructor-details/instructor-details.component';
+import { RateInstructorComponent } from './components/rate-instructor/rate-instructor.component';
 
 @NgModule({
   imports: [
@@ -12,7 +13,8 @@ import { InstructorDetailsComponent } from './components/instructor-details/inst
   ],
   declarations: [
     SearchInstructorComponent,
-    InstructorDetailsComponent
+    InstructorDetailsComponent,
+    RateInstructorComponent
   ],
   providers: [
     InstructorService,

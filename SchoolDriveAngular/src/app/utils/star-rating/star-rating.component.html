@@ -1,4 +1,4 @@
 <div class="stars">
   <span *ngFor="let star of stars; let i = index" appStarRating class="star"
-        [ngClass] = "i <= rate ? 'active' : ''" (click)="log(i)">&#9733;</span>
+        [ngClass] = "i <= rate ? 'active' : ''" (click)="changeRate(i)">&#9733;</span>
 </div>

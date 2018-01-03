@@ -34,4 +34,15 @@ public class InstructorRatingDAOImpl implements InstructorRatingDAO {
         query.setParameter("iid", instructorId);
         return query.getResultList();
     }
+
+    @Override
+    public InstructorRating getByIntructorAndUser(Integer instructorId, Integer userId) {
+        String jpqlQuery = "SELECT ir from InstructorRating ir where ir.instructor.id = :iid and ir.user.id = :uid";
+        TypedQuery<InstructorRating> query = em.createQuery(jpqlQuery, InstructorRating.class);
+        query.setParameter("iid", instructorId);
+        query.setParameter("uid", userId);
+//        return query.getSingleResult();
+        List<InstructorRating> result = query.getResultList();
+        return result.isEmpty() ? null : result.get(0);
+    }
 }

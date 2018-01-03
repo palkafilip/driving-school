@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -34,6 +35,15 @@ public class InstructorBreakDAOImpl implements InstructorBreakDAO {
         String jpqlQuery = "SELECT ib from InstructorBreak ib where ib.instructor.id = :iid";
         TypedQuery<InstructorBreak> query = em.createQuery(jpqlQuery, InstructorBreak.class);
         query.setParameter("iid", instructorId);
+        return query.getResultList();
+    }
+
+    @Override
+    public List<InstructorBreak> getInstruktorBreakByIntructorAndDay(Integer instructorId, Date inputDay) {
+        String jpqlQuery = "SELECT ib from InstructorBreak ib where ib.instructor.id = :iid and ib.day = :iday";
+        TypedQuery<InstructorBreak> query = em.createQuery(jpqlQuery, InstructorBreak.class);
+        query.setParameter("iid", instructorId);
+        query.setParameter("iday", inputDay);
         return query.getResultList();
     }
 }

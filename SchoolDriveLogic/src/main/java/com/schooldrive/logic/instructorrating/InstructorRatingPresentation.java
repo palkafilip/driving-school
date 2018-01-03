@@ -52,4 +52,16 @@ public class InstructorRatingPresentation {
     public String getDate() {
         return date;
     }
+
+    @Override
+    public String toString() {
+        return "InstructorRatingPresentation{" +
+                "id=" + id +
+                ", user=" + user +
+                ", instructor=" + instructor +
+                ", comment='" + comment + '\'' +
+                ", rate=" + rate +
+                ", date='" + date + '\'' +
+                '}';
+    }
 }

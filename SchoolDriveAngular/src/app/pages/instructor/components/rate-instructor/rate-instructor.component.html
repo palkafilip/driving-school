@@ -1,0 +1,35 @@
+<div class="container">
+  <div *ngIf="rateExist" class="rate-exist">
+    <h1>Nie można ocenić jednego instruktora więcej, niż raz</h1>
+    <h2>Twoja ocena:</h2>
+    <div class="rates">
+      <div class="top">
+        <p>Data: {{convertDateWithoutTime(instructorRating.date)}}</p>
+        <p>Ocena: {{instructorRating.rate}}</p>
+      </div>
+      <div class="comment">
+        <p>"{{instructorRating.comment}}" <span class="author">~{{instructorRating.user.firstname}} {{instructorRating.user.lastname}}</span>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!rateExist" class="rate-exist">
+    <div class="background">
+      <div class="rate-instructor">
+        <h1>Oceń instruktora</h1>
+        <h2 *ngIf="instructor">{{instructor.firstname}} {{instructor.lastname}}</h2>
+        <div class="rate">
+          <p>Ocena:</p>
+          <app-star-rating (rateOutput)="changeRate($event)"></app-star-rating>
+        </div>
+        <div class="comment">
+          <p>Komentarz:</p>
+          <textarea class="form-control" [(ngModel)]="instructorRating.comment"></textarea>
+        </div>
+
+        <button class="btn btn-info btn-customized" (click)="rateInstructor()">Zatwierdź</button>
+        <p *ngIf="errorMsg">{{errorMsg}}</p>
+      </div>
+    </div>
+  </div>
+</div>

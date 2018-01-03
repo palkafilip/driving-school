@@ -12,6 +12,8 @@ import com.schooldrive.persistence.user.UserDAO;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -28,8 +30,14 @@ public class Test {
         InstructorDAO instructorDAO = context.getBean(InstructorDAO.class);
         InstructorBreakDAO instructorBreakDAO = context.getBean(InstructorBreakDAO.class);
 
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date d = null;
+        try {
+            d = simpleDateFormat.parse("2017-12-17");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
-        System.out.println(instructorBreakDAO.getAllInstructorBreaksByInstructorId(1));
-
+        System.out.println(instructorBreakDAO.getInstruktorBreakByIntructorAndDay(1,d));
     }
 }

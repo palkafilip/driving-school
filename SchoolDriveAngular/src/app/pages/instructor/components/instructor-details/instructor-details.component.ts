@@ -13,9 +13,7 @@ import {DateUtilsService} from "../../../../service/date-utils.service";
 })
 export class InstructorDetailsComponent implements OnInit, OnDestroy {
 
-  //TODO: Zamienic na 1 subskrypcje: AngularLove - ktores Tips&Tricks
-  private sub: Subscription;
-  private sub2: Subscription;
+  private subscriptions: Subscription;
   id: number;
   instructorRates: InstructorRatingPresentation[] = [];
   instructor: Instructor;
@@ -27,22 +25,29 @@ export class InstructorDetailsComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.sub = this.route
-      .params
-      .subscribe(params => {
-        this.id = +params['id'];
-        this.getInstructorById();
-        this.getInstructorRates();
-      })
+    this.subscriptions = new Subscription();
+    this.subscriptions
+      .add(
+        this.route
+          .params
+          .subscribe(params => {
+            this.id = +params['id'];
+            this.getInstructorById();
+            this.getInstructorRates();
+          })
+      )
   }
 
   getInstructorRates() {
-    this.sub2 = this.instructorService
-      .getInstructorDetailsWithRates(this.id)
-      .subscribe(ir => {
-        this.instructorRates = ir;
-        // console.log(this.averageInstructorRate());
-      });
+    this.subscriptions
+      .add(
+        this.instructorService
+          .getInstructorDetailsWithRates(this.id)
+          .subscribe(ir => {
+            this.instructorRates = ir;
+            // console.log(this.averageInstructorRate());
+          })
+      )
   }
 
   getInstructorById() {
@@ -65,6 +70,6 @@ export class InstructorDetailsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.sub.unsubscribe();
+    this.subscriptions.unsubscribe();
   }
 }

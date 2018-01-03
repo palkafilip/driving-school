@@ -7,13 +7,14 @@
       </div>
       <div class="body">
         <div class="body-item">
-          <h2>Instruktor:</h2>
-          <p>{{drive.instructor.firstname}} {{drive.instructor.lastname}}</p>
-          <p>Telefon: {{drive.instructor.phone}}</p>
-          <p>Emal: {{drive.instructor.email}}</p>
+          <h2>Instruktor</h2>
+          <p><span class="bolder">Imię:</span> {{drive.instructor.firstname}}</p>
+          <p><span class="bolder">Nazwisko:</span> {{drive.instructor.lastname}}</p>
+          <p><span class="bolder">Telefon:</span> {{drive.instructor.phone}}</p>
+          <p><span class="bolder">Email:</span> {{drive.instructor.email}}</p>
 
           <div class="buttons">
-            <button *ngIf="type === 'historical'" class="btn btn-info btn-customized">Oceń instruktora</button>
+            <button *ngIf="type === 'historical'" class="btn btn-info btn-customized" (click)="goToRateInstructor(drive.instructor.id)">Oceń instruktora</button>
             <button *ngIf="type === 'incoming'" class="btn btn-edit btn-customized" (click)="goToEdit(drive.id)">Edytuj</button>
             <button *ngIf="type === 'incoming'" class="btn btn-cancel btn-customized" (click)="openModal(template)">Odwołaj</button>
           </div>
@@ -29,9 +30,10 @@
 
         <div class="body-item">
           <h2>Samochód</h2>
-          <p>{{drive.car.brand}} {{drive.car.model}}</p>
-          <p>Rok: {{drive.car.year}}</p>
-          <p>Silnik: {{drive.car.engineCapacity}} {{drive.car.fuelType}}</p>
+          <p><span class="bolder">Marka:</span> {{drive.car.brand}}</p>
+          <p><span class="bolder">Model:</span> {{drive.car.model}}</p>
+          <p><span class="bolder">Rok:</span> {{drive.car.year}}</p>
+          <p><span class="bolder">Silnik:</span> {{drive.car.engineCapacity}} {{drive.car.fuelType}}</p>
         </div>
       </div>
     </div>

@@ -26,6 +26,7 @@
 
       h2 {
         font-size: 1.2rem;
+        padding-bottom: 10px;
       }
 
       .header {
@@ -41,6 +42,9 @@
         .body-item {
           padding: 0 40px;
 
+          p {
+            font-size: 0.9rem;
+          }
           .buttons {
             margin: 10px 0;
           }
@@ -73,6 +77,10 @@
     border-radius: 6px;
     cursor: pointer;
     font-size: 0.9rem;
+    font-weight: 700;
+  }
+
+  .bolder {
     font-weight: 700;
   }
 }

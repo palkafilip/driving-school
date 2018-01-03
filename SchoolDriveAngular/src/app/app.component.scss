@@ -33,6 +33,49 @@ $navbar-height: 55px;
 
 .pages-background {
   background-color: #ffffff;
-  min-height: 100%;
+  min-height: calc(100vh - 90px);
+}
+
+footer {
+  margin-top: 40px;
+  background-color: #ffffff;
+  border-top: 1px solid #d9d9d9;
+  padding: 10px 15px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .footer-menu {
+    .menu-list {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      list-style: none;
+
+      .menu-item {
+        text-decoration: none;
+        font-size: 0.8rem;
+
+        &:first-child {
+          a {
+            padding-left: 0;
+          }
+        }
+        a {
+          padding: 15px 10px;
+          color: #000;
+          &:hover {
+            color: #4e4e4e;
+          }
+        }
+      }
+    }
+  }
+
+  p {
+    margin: 0;
+    font-size: 0.8rem;
+  }
 }
 

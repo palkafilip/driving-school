@@ -3,6 +3,7 @@
     <div *ngIf="stage===0" class="choose-container">
       <h1>Wybierz instruktora</h1>
       <div class="select">
+        <p *ngIf="reservation.instructor">Wybrany instruktor: {{reservation.instructor.firstname}} {{reservation.instructor.lastname}}</p>
         <select class="form-control" [(ngModel)]="reservation.instructor">
           <option *ngFor="let inst of instructors" [ngValue]="inst">{{inst.firstname}} {{inst.lastname}}</option>
         </select>
@@ -15,6 +16,7 @@
     <div *ngIf="stage===1" class="choose-container">
       <h1>Wybierz samochód</h1>
       <div class="select">
+        <p *ngIf="reservation.car">Wybrany samochód: {{reservation.car.brand}} {{reservation.car.model}}</p>
         <select class="form-control" [(ngModel)]="reservation.car">
           <option *ngFor="let car of cars" [ngValue]="car">{{car.brand}} {{car.model}} {{car.engineCapacity}}</option>
         </select>
@@ -28,6 +30,7 @@
       <h1>Wybierz date</h1>
       <div class="select">
         <!--<input type="date" class="form-control" [ngModel]="dt | date:'yyyy-MM-dd'"> -->
+        <p *ngIf="reservation.day">Wybrany dzień: {{reservation.day}}</p>
         <input type="date" class="form-control" [ngModel]="reservation.day" (ngModelChange)="changeDate($event)">
 
         <button class="btn btn-info btn-customized" (click)="toTimeStage()">Dalej</button>
@@ -39,6 +42,7 @@
     <div *ngIf="stage===3" class="choose-container">
       <h1>Wybierz godzinę</h1>
       <div class="select">
+        <p *ngIf="reservation.hoursInterval">Wybrane godziny: {{reservation.hoursInterval.startTime}} - {{reservation.hoursInterval.endTime}}</p>
         <select class="form-control" [(ngModel)]="reservation.hoursInterval">
           <option *ngFor="let interval of hourIntervals" [disabled]="checkIfReserved(interval)" [ngValue]="interval">
             {{interval.startTime}} - {{interval.endTime}}

@@ -4,14 +4,14 @@ import com.schooldrive.logic.instructor.InstructorPresentation;
 import com.schooldrive.logic.instructor.InstructorService;
 import com.schooldrive.logic.instructorrating.InstructorRatingPresentation;
 import com.schooldrive.logic.instructorrating.InstructorRatingService;
+import com.schooldrive.logic.user.UserServiceException;
+import com.schooldrive.persistence.instructorrating.InstructorRating;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -51,7 +51,7 @@ public class InstructorController {
         return new ResponseEntity<>(instructor, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "instructor/{instructorId}/instructor-ratings", method = RequestMethod.GET)
+    @RequestMapping(value = "instructor/{instructorId}/ratings", method = RequestMethod.GET)
     public ResponseEntity<?> getRatingsByInstructorId(@PathVariable Integer instructorId) {
 
         List<InstructorRatingPresentation> instructorRatingPresentations = instructorRatingService
@@ -62,4 +62,29 @@ public class InstructorController {
 
         return new ResponseEntity<>(instructorRatingPresentations, HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/instructor/{instructorId}/rating", method = RequestMethod.GET)
+    public ResponseEntity<?> getInstructorRateFromUser(@PathVariable Integer instructorId, @RequestParam Integer userId) {
+
+        InstructorRating instructorRating =
+                instructorRatingService.getByInstructorAndUser(instructorId, userId);
+        if(instructorRating == null) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        InstructorRatingPresentation instructorRatingPresentation = new InstructorRatingPresentation(instructorRating);
+
+        return new ResponseEntity<>(instructorRatingPresentation, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/instructor/{instructorId}/rating/new", method = RequestMethod.POST)
+    public ResponseEntity<?> addNewRating(@RequestBody InstructorRatingPresentation rating) throws UserServiceException, ParseException {
+
+        instructorRatingService.addInstructorRating(rating);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+
+
+
 }

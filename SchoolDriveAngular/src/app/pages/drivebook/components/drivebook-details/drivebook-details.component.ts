@@ -52,6 +52,10 @@ export class DrivebookDetailsComponent implements OnInit, OnDestroy {
     this.router.navigate(['pages/drivebooks/incoming', id, 'edit']);
   }
 
+  goToRateInstructor(id: number) {
+    this.router.navigate(['pages/instructors/rate-instructor', id]);
+  }
+
   cancelBook() {
     this.subscriptions
       .add(
@@ -59,6 +63,7 @@ export class DrivebookDetailsComponent implements OnInit, OnDestroy {
           .deleteBook(this.id)
           .subscribe(res => {
             this.modalRef.hide();
+            this.router.navigate(['pages'])
           })
       )
 

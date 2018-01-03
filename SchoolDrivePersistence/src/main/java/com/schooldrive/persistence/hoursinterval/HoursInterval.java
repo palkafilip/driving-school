@@ -80,4 +80,24 @@ public class HoursInterval {
                 ", endTime='" + endTime + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        HoursInterval that = (HoursInterval) o;
+
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (startTime != null ? !startTime.equals(that.startTime) : that.startTime != null) return false;
+        return endTime != null ? endTime.equals(that.endTime) : that.endTime == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (startTime != null ? startTime.hashCode() : 0);
+        result = 31 * result + (endTime != null ? endTime.hashCode() : 0);
+        return result;
+    }
 }

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RestService } from "../service/rest.service";
 import { FormsModule } from "@angular/forms";
 import { HttpModule }    from '@angular/http';
+import {StarRatingComponent} from "../utils/star-rating/star-rating.component";
 
 @NgModule({
   imports: [
@@ -10,7 +11,9 @@ import { HttpModule }    from '@angular/http';
     FormsModule,
     HttpModule,
   ],
-  declarations: [],
+  declarations: [
+    StarRatingComponent
+  ],
   providers: [
     RestService,
   ],
@@ -18,6 +21,7 @@ import { HttpModule }    from '@angular/http';
     FormsModule,
     CommonModule,
     HttpModule,
+    StarRatingComponent,
   ]
 })
 export class SharedModule { }

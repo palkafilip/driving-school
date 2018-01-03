@@ -116,4 +116,31 @@ public class Car {
                 ", fuelType='" + fuelType + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Car car = (Car) o;
+
+        if (id != null ? !id.equals(car.id) : car.id != null) return false;
+        if (brand != null ? !brand.equals(car.brand) : car.brand != null) return false;
+        if (model != null ? !model.equals(car.model) : car.model != null) return false;
+        if (year != null ? !year.equals(car.year) : car.year != null) return false;
+        if (engineCapacity != null ? !engineCapacity.equals(car.engineCapacity) : car.engineCapacity != null)
+            return false;
+        return fuelType != null ? fuelType.equals(car.fuelType) : car.fuelType == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (brand != null ? brand.hashCode() : 0);
+        result = 31 * result + (model != null ? model.hashCode() : 0);
+        result = 31 * result + (year != null ? year.hashCode() : 0);
+        result = 31 * result + (engineCapacity != null ? engineCapacity.hashCode() : 0);
+        result = 31 * result + (fuelType != null ? fuelType.hashCode() : 0);
+        return result;
+    }
 }

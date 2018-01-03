@@ -5,6 +5,7 @@ import com.schooldrive.logic.car.CarServiceException;
 import com.schooldrive.logic.hoursinterval.HoursIntervalPresentation;
 import com.schooldrive.logic.hoursinterval.HoursIntervalService;
 import com.schooldrive.logic.instructor.InstructorService;
+import com.schooldrive.logic.instructorbreak.InstructorBreakService;
 import com.schooldrive.logic.user.UserService;
 import com.schooldrive.logic.user.UserServiceException;
 import com.schooldrive.logic.utils.DateUtils;
@@ -21,6 +22,7 @@ import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Created by Filip on 30.11.2017.
@@ -32,14 +34,16 @@ public class DriveBookingService {
     CarService carService;
     UserService userService;
     HoursIntervalService hoursIntervalService;
+    InstructorBreakService instructorBreakService;
 
     @Autowired
-    public DriveBookingService(DriveBookingDAO driveBookingDAO, InstructorService instructorService, CarService carService, UserService userService, HoursIntervalService hoursIntervalService) {
+    public DriveBookingService(DriveBookingDAO driveBookingDAO, InstructorService instructorService, CarService carService, UserService userService, HoursIntervalService hoursIntervalService, InstructorBreakService instructorBreakService) {
         this.driveBookingDAO = driveBookingDAO;
         this.instructorService = instructorService;
         this.carService = carService;
         this.userService = userService;
         this.hoursIntervalService = hoursIntervalService;
+        this.instructorBreakService = instructorBreakService;
     }
 
     public List<DriveBooking> getAllByUserId(Integer id) {
@@ -55,13 +59,42 @@ public class DriveBookingService {
         driveBookingDAO.deleteBook(driveBooking);
     }
 
+//    public List<HoursInterval> getTakenHoursInDay(Integer instructorId, Integer carId, String day) throws ParseException {
+//        Date dateDay = DateUtils.dateWithoutTime().parse(day);
+//        return driveBookingDAO
+//                .getTakenHoursInDayByInstructorCarDay(instructorId, carId, dateDay)
+//                .stream()
+//                .map(db -> db.getHoursInterval())
+//                .collect(Collectors.toList());
+//    }
+
+//    public List<DriveBooking> getBookedDrivesInDay(Integer instructorId, Integer carId, String day) throws ParseException {
+//        Date dateDay = DateUtils.dateWithoutTime().parse(day);
+//        return driveBookingDAO
+//                .getTakenHoursInDayByInstructorCarDay(instructorId, carId, dateDay);
+//    }
+
     public List<HoursInterval> getTakenHoursInDay(Integer instructorId, Integer carId, String day) throws ParseException {
         Date dateDay = DateUtils.dateWithoutTime().parse(day);
-        return driveBookingDAO
+
+        List<HoursInterval> hoursFromBooking = driveBookingDAO
                 .getTakenHoursInDayByInstructorCarDay(instructorId, carId, dateDay)
                 .stream()
                 .map(db -> db.getHoursInterval())
                 .collect(Collectors.toList());
+
+        List<HoursInterval> hoursFromBreak = instructorBreakService
+                .getInstructorBreakByInstructorAndDay(instructorId, day)
+                .stream()
+                .map(ib -> ib.getHoursInterval())
+                .collect(Collectors.toList());
+
+        List<HoursInterval> joinedList = Stream
+                .concat(hoursFromBooking.stream(), hoursFromBreak.stream())
+                .distinct()
+                .collect(Collectors.toList());
+
+        return joinedList;
     }
 
     public Boolean checkIfUserHasBook(Integer userId, Integer hoursIntervalId, String day) throws ParseException {
@@ -104,4 +137,5 @@ public class DriveBookingService {
 
         return driveBooking;
     }
+
 }
