@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/rest/hour-intervals")
 public class HoursIntervalController {
 
-    HoursIntervalService hoursIntervalService;
+    private HoursIntervalService hoursIntervalService;
 
     @Autowired
     public HoursIntervalController(HoursIntervalService hoursIntervalService) {

@@ -63,6 +63,21 @@ public class InstructorController {
         return new ResponseEntity<>(instructorRatingPresentations, HttpStatus.OK);
     }
 
+    //DOBRE!!!
+//    @RequestMapping(value = "instructor/{instructorId}/ratings", params = "userId", method = RequestMethod.GET)
+//    public ResponseEntity<?> daadwad(@PathVariable Integer instructorId, @RequestParam Integer userId) {
+//
+//        System.out.println("Metoda 2");
+//        List<InstructorRatingPresentation> instructorRatingPresentations = instructorRatingService
+//                .getByInstructorId(instructorId)
+//                .stream()
+//                .map(ip -> new InstructorRatingPresentation(ip))
+//                .collect(Collectors.toList());
+//
+//        return new ResponseEntity<>(instructorRatingPresentations, HttpStatus.OK);
+//    }
+
+
     @RequestMapping(value = "/instructor/{instructorId}/rating", method = RequestMethod.GET)
     public ResponseEntity<?> getInstructorRateFromUser(@PathVariable Integer instructorId, @RequestParam Integer userId) {
 

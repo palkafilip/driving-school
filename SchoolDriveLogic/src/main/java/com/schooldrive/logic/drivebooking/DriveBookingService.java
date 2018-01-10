@@ -29,6 +29,7 @@ import java.util.stream.Stream;
  */
 @Service
 public class DriveBookingService {
+
     DriveBookingDAO driveBookingDAO;
     InstructorService instructorService;
     CarService carService;
@@ -59,21 +60,6 @@ public class DriveBookingService {
         driveBookingDAO.deleteBook(driveBooking);
     }
 
-//    public List<HoursInterval> getTakenHoursInDay(Integer instructorId, Integer carId, String day) throws ParseException {
-//        Date dateDay = DateUtils.dateWithoutTime().parse(day);
-//        return driveBookingDAO
-//                .getTakenHoursInDayByInstructorCarDay(instructorId, carId, dateDay)
-//                .stream()
-//                .map(db -> db.getHoursInterval())
-//                .collect(Collectors.toList());
-//    }
-
-//    public List<DriveBooking> getBookedDrivesInDay(Integer instructorId, Integer carId, String day) throws ParseException {
-//        Date dateDay = DateUtils.dateWithoutTime().parse(day);
-//        return driveBookingDAO
-//                .getTakenHoursInDayByInstructorCarDay(instructorId, carId, dateDay);
-//    }
-
     public List<HoursInterval> getTakenHoursInDay(Integer instructorId, Integer carId, String day) throws ParseException {
         Date dateDay = DateUtils.dateWithoutTime().parse(day);
 
@@ -89,12 +75,10 @@ public class DriveBookingService {
                 .map(ib -> ib.getHoursInterval())
                 .collect(Collectors.toList());
 
-        List<HoursInterval> joinedList = Stream
+        return Stream
                 .concat(hoursFromBooking.stream(), hoursFromBreak.stream())
                 .distinct()
                 .collect(Collectors.toList());
-
-        return joinedList;
     }
 
     public Boolean checkIfUserHasBook(Integer userId, Integer hoursIntervalId, String day) throws ParseException {

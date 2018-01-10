@@ -25,14 +25,16 @@ import java.util.Map;
 @RequestMapping("/rest/users")
 public class UserController {
 
-    UserService userService;
+    private UserService userService;
 
-//    private static final Logger LOGGER = Logger.getLogger(UserController.class);
-    final Logger logger = LoggerFactory.getLogger(UserController.class);
     @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
     }
+
+    //    private static final Logger LOGGER = Logger.getLogger(UserController.class);
+    final Logger logger = LoggerFactory.getLogger(UserController.class);
+
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public ResponseEntity<?> getUsers(@RequestParam Integer id) throws UserServiceException {
@@ -71,11 +73,4 @@ public class UserController {
         UserPresentation updatedUser = new UserPresentation(userService.updateUserPersonalData(user));
         return new ResponseEntity<>(updatedUser, HttpStatus.OK);
     }
-//    @RequestMapping(value = "/settings/password", method = RequestMethod.POST)
-//    public ResponseEntity<?> changePassword(@RequestBody UserPresentation user) {
-//
-//        UserPresentation updatedUser = new UserPresentation(userService.updateUserPersonalData(user));
-//        return new ResponseEntity<>(updatedUser, HttpStatus.OK);
-//    }
-
 }

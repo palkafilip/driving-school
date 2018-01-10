@@ -13,7 +13,6 @@ export class AuthenticatedGuardService implements CanLoad {
   }
 
   canLoad(route: Route): Observable<boolean> | boolean {
-
     return new Observable(observer => {
       const URI = 'users/logged';
       this.rest
@@ -36,16 +35,7 @@ export class AuthenticatedGuardService implements CanLoad {
         )
         observer.complete();
     })
-    // const result = this.loggedUserService
-    //   .getLoggedUser()
-    //   .map(user => {
-    //     if (!user) {
-    //       this.router.navigate(['/start']);
-    //       return false;
-    //     }
-    //     return true;
-    //   });
-    // ;
-    // return result;
   }
 }
+
+

@@ -45,7 +45,7 @@ export class SearchInstructorComponent implements OnInit, OnDestroy {
   filterInstructors() {
     this.searchResult = '';
     this.filteredInstructors = this.allInstructors
-      .filter(i => i.firstname.search(this.store.seachInput) > -1 || i.lastname.search(this.store.seachInput) > -1);
+      .filter(i => i.firstname.search(this.store.searchInput) > -1 || i.lastname.search(this.store.searchInput) > -1);
     if(this.filteredInstructors.length === 0) {
       this.searchResult = 'Nie znaleziono instruktorów spełniających podane kryteria';
     }

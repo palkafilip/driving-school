@@ -15,3 +15,4 @@ export class StoreService {
     return JSON.parse(sessionStorage.getItem(location.pathname)) || {};
   }
 }
+

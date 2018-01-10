@@ -27,7 +27,7 @@ public class RestErrorHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(ServiceException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public Object handleException(Throwable e) {
+    public Object handleServiceException(Throwable e) {
         LOGGER.error(e.getMessage(), e);
         return new ResponseError(e);
     }
@@ -39,3 +39,4 @@ public class RestErrorHandler extends ResponseEntityExceptionHandler {
         return new ResponseError(e);
     }
 }
+

@@ -28,6 +28,7 @@ public class CarController {
         this.carService = carService;
     }
 
+    
     @RequestMapping(value = "", method = RequestMethod.GET)
     public ResponseEntity<?> getCar(@RequestParam Integer id) throws CarServiceException {
         CarPresentation car = new CarPresentation(carService.getCarById(id));

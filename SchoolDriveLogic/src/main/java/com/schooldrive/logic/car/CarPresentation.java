@@ -9,16 +9,12 @@ import java.util.Date;
  * Created by Filip on 13.10.2017.
  */
 public class CarPresentation {
-
     private Integer id;
     private String brand;
     private String model;
     private String year;
     private Integer engineCapacity;
     private String fuelType;
-
-    public CarPresentation() {
-    }
 
     public CarPresentation(Car car) {
         this.id = car.getId();
@@ -27,6 +23,9 @@ public class CarPresentation {
         this.year = DateUtils.dateYearOnly().format(car.getYear());
         this.engineCapacity = car.getEngineCapacity();
         this.fuelType = car.getFuelType();
+    }
+
+    public CarPresentation() {
     }
 
     public Integer getId() {

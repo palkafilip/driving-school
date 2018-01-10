@@ -26,13 +26,14 @@ public class CarService {
         try {
             car = carDAO.getCarById(id);
         } catch (NoResultException e) {
-            throw new CarServiceException("Car with id: " + id + " does not exist");
+            throw new CarServiceException("Samochód o id: " + id + " nie istnieje");
         } catch (Exception e) {
             throw new CarServiceException(e.getMessage(), e);
         }
 
         return car;
     }
+
 
     public List<Car> getAllCars() {
         return carDAO.getAllCars();

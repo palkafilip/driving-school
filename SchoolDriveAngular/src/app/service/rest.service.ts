@@ -20,7 +20,6 @@ export class RestService {
       .get(url, { withCredentials: true })
       .map(res => this.extractData(res))
       .catch(err => this.handleError(err));
-
   }
 
   POST(resource: string, params: any): Observable<any> {
@@ -39,18 +38,6 @@ export class RestService {
       .delete(url, { withCredentials: true })
       .map(res => this.extractData(res))
       .catch(err => this.handleError(err));
-  }
-
-  POSTWithAuthorization(resource: string, login: string, password: string, params: any) {
-
-    const url = this.ORIGIN + resource;
-    const options = this.createRequestOptions(login, password);
-
-    return this.http
-      .post(url, params, options)
-      .map(res => this.extractData(res))
-      .catch(err => this.handleError(err));
-
   }
 
   GETWithAuthorization(resource: string, login: string, password: string) {
@@ -82,17 +69,6 @@ export class RestService {
   }
 
   private handleError (error: Response | any) {
-    // let errMsg: string;
-    // if (error instanceof Response) {
-    //   const body = error.json() || '';
-    //   const err = JSON.stringify(body);
-    //   errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-    // } else {
-    //   errMsg = error.message ? error.message : error.toString();
-    // }
-
-    // console.log(error['_body']);
-    // console.log(error.json());
     return Observable.throw(error);
   }
 
