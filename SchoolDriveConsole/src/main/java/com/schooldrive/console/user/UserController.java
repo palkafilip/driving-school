@@ -36,9 +36,9 @@ public class UserController {
     final Logger logger = LoggerFactory.getLogger(UserController.class);
 
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
-    public ResponseEntity<?> getUsers(@RequestParam Integer id) throws UserServiceException {
-        UserPresentation user = new UserPresentation(userService.getUserById(id));
+    @RequestMapping(value = "/{userId}", method = RequestMethod.GET)
+    public ResponseEntity<?> getUserById(@PathVariable Integer userId) throws UserServiceException {
+        UserPresentation user = new UserPresentation(userService.getUserById(userId));
         return new ResponseEntity<Object>(user, HttpStatus.OK);
     }
 
@@ -65,7 +65,7 @@ public class UserController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/settings/data-change", method = RequestMethod.POST)
+    @RequestMapping(value = "/{userId}/settings", method = RequestMethod.POST)
     public ResponseEntity<?> changeData(@RequestBody UserPresentation user) throws UserServiceException {
 
         logger.info("test loggera");

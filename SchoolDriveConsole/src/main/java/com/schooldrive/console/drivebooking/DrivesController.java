@@ -30,8 +30,8 @@ public class DrivesController {
         this.driveBookingService = driveBookingService;
     }
 
-    @RequestMapping(value = "/{userId}/all", method = RequestMethod.GET)
-    public ResponseEntity<?> getByUserId(@PathVariable Integer userId) throws CarServiceException {
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    public ResponseEntity<?> getByUserId(@RequestParam Integer userId) throws CarServiceException {
 
         List<DriveBookingPresentation> drivesList = driveBookingService
                 .getAllByUserId(userId)
@@ -41,7 +41,7 @@ public class DrivesController {
 
         return new ResponseEntity<>(drivesList, HttpStatus.OK);
     }
-    @RequestMapping(value = "/drive/{driveId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{driveId}", method = RequestMethod.GET)
     public ResponseEntity<?> getById(@PathVariable Integer driveId) {
 
         DriveBookingPresentation driveBookingPresentation = new DriveBookingPresentation(driveBookingService
@@ -50,7 +50,7 @@ public class DrivesController {
         return new ResponseEntity<>(driveBookingPresentation, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/drive/{driveId}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{driveId}", method = RequestMethod.DELETE)
     public ResponseEntity<?> deleteDrive(@PathVariable Integer driveId) {
 
         driveBookingService.deleteDriveBook(driveId);
@@ -73,7 +73,7 @@ public class DrivesController {
         return new ResponseEntity<>(takenHours, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/new/book", method = RequestMethod.POST)
+    @RequestMapping(value = "", method = RequestMethod.POST)
     public ResponseEntity<?> bookDrive(@RequestBody DriveBookingPresentation newDrive) throws ParseException, UserServiceException, CarServiceException, DriveBookingServiceException {
 
         DriveBookingPresentation bookConfirmation =

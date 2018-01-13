@@ -27,7 +27,7 @@ export class SettingsComponent implements OnInit {
   applyPersonalChanges() {
     this.userService
       .updateUserData(this.loggedUser)
-      .subscribe(data => console.log(data));
+      .subscribe(data => this.loggedService.setLoggedUser(data));
   }
 
   applyPasswordChange() {
@@ -41,7 +41,7 @@ export class SettingsComponent implements OnInit {
     this.loggedUser.password = this.newPassword;
     this.userService
       .updateUserData(this.loggedUser)
-      .subscribe(data => console.log(data));
+      .subscribe(data => this.loggedService.setLoggedUser(data));
   }
 
 }

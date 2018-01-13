@@ -9,31 +9,31 @@ export class InstructorService {
   constructor(private rest: RestService) { }
 
   getAllInstructors(): Observable<any> {
-    const URL = 'instructors/all';
+    const URL = 'instructors';
     return this.rest
       .GET(URL);
   }
 
   getInstructorById(id: number): Observable<any> {
-    const URL = `instructors/instructor/${id}`;
+    const URL = `instructors/${id}`;
     return this.rest
       .GET(URL);
   }
 
   getInstructorDetailsWithRates(id: number): Observable<any> {
-    const URL = `instructors/instructor/${id}/ratings`;
+    const URL = `instructors/${id}/ratings`;
     return this.rest
       .GET(URL);
   }
 
   getIntructorRateByUserAndInstructor(userId: number, instructorId: number): Observable<any> {
-    const URL = `instructors/instructor/${instructorId}/rating?userId=${userId}`;
+    const URL = `instructors/${instructorId}/ratings?userId=${userId}`;
     return this.rest
       .GET(URL);
   }
 
   addInstructorRate(instructorId: number, rate: InstructorRatingPresentation) {
-    const URL = `instructors/instructor/${instructorId}/rating/new`;
+    const URL = `instructors/${instructorId}/ratings`;
     return this.rest
       .POST(URL, rate);
   }

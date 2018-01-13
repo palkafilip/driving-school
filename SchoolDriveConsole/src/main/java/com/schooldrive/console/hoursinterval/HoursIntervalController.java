@@ -28,7 +28,7 @@ public class HoursIntervalController {
         this.hoursIntervalService = hoursIntervalService;
     }
 
-    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public ResponseEntity<?> getAllIntervals() {
         List<HoursIntervalPresentation> hoursIntervalPresentations = this.hoursIntervalService
                 .getAllHourIntervals()

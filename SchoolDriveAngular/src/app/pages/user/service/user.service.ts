@@ -9,7 +9,7 @@ export class UserService {
   constructor(private rest: RestService) { }
 
   updateUserData(user: User): Observable<any> {
-    const URI = 'users/settings/data-change';
+    const URI = `users/${user.id}/settings`;
     return this.rest
       .POST(URI, user);
   }

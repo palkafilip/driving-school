@@ -22,19 +22,19 @@ export class DrivebookService {
   }
 
   getDrivesForLoggedUser(): Observable<any> {
-    const URL: string = `drives/${this.loggedUser.id}/all`;
+    const URL: string = `drives?userId=${this.loggedUser.id}`;
     return this.rest
       .GET(URL);
   }
 
   getDriveById(id: number): Observable<any> {
-    const URL: string = `drives/drive/${id}`;
+    const URL: string = `drives/${id}`;
     return this.rest
       .GET(URL);
   }
 
   deleteBook(id: number): Observable<any> {
-    const URL: string = `drives/drive/${id}`;
+    const URL: string = `drives/${id}`;
     return this.rest
       .DELETE(URL);
   }

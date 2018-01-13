@@ -11,19 +11,19 @@ export class BookService {
   ) { }
 
   getAllInstructors(): Observable<any> {
-    const URL = 'instructors/all';
+    const URL = 'instructors';
     return this.rest
       .GET(URL);
   }
 
   getAllCars(): Observable<any> {
-    const URL = 'cars/all';
+    const URL = 'cars';
     return this.rest
       .GET(URL);
   }
 
   getAllHourIntervals(): Observable<any> {
-    const URL = 'hour-intervals/all';
+    const URL = 'hour-intervals';
     return this.rest
       .GET(URL);
   }
@@ -35,7 +35,7 @@ export class BookService {
   }
 
   bookDrive(bookInfo: DriveBookingPresentation) {
-    const URL = 'drives/new/book';
+    const URL = 'drives';
     return this.rest
       .POST(URL, bookInfo);
   }

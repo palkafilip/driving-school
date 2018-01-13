@@ -31,7 +31,7 @@ public class InstructorController {
         this.instructorRatingService = instructorRatingService;
     }
 
-    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public ResponseEntity<?> getInstructors() {
 
         List<InstructorPresentation> instructors = instructorService
@@ -43,7 +43,7 @@ public class InstructorController {
         return new ResponseEntity<>(instructors, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/instructor/{instructorId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{instructorId}", method = RequestMethod.GET)
     public ResponseEntity<?> getInstructorById(@PathVariable Integer instructorId) {
 
         InstructorPresentation instructor = new InstructorPresentation(instructorService.getById(instructorId));
@@ -51,7 +51,7 @@ public class InstructorController {
         return new ResponseEntity<>(instructor, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "instructor/{instructorId}/ratings", method = RequestMethod.GET)
+    @RequestMapping(value = "/{instructorId}/ratings", method = RequestMethod.GET)
     public ResponseEntity<?> getRatingsByInstructorId(@PathVariable Integer instructorId) {
 
         List<InstructorRatingPresentation> instructorRatingPresentations = instructorRatingService
@@ -64,21 +64,7 @@ public class InstructorController {
     }
 
     //DOBRE!!!
-//    @RequestMapping(value = "instructor/{instructorId}/ratings", params = "userId", method = RequestMethod.GET)
-//    public ResponseEntity<?> daadwad(@PathVariable Integer instructorId, @RequestParam Integer userId) {
-//
-//        System.out.println("Metoda 2");
-//        List<InstructorRatingPresentation> instructorRatingPresentations = instructorRatingService
-//                .getByInstructorId(instructorId)
-//                .stream()
-//                .map(ip -> new InstructorRatingPresentation(ip))
-//                .collect(Collectors.toList());
-//
-//        return new ResponseEntity<>(instructorRatingPresentations, HttpStatus.OK);
-//    }
-
-
-    @RequestMapping(value = "/instructor/{instructorId}/rating", method = RequestMethod.GET)
+    @RequestMapping(value = "/{instructorId}/ratings", params = "userId", method = RequestMethod.GET)
     public ResponseEntity<?> getInstructorRateFromUser(@PathVariable Integer instructorId, @RequestParam Integer userId) {
 
         InstructorRating instructorRating =
@@ -91,7 +77,21 @@ public class InstructorController {
         return new ResponseEntity<>(instructorRatingPresentation, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/instructor/{instructorId}/rating/new", method = RequestMethod.POST)
+
+//    @RequestMapping(value = "/instructor/{instructorId}/rating", method = RequestMethod.GET)
+//    public ResponseEntity<?> getInstructorRateFromUser(@PathVariable Integer instructorId, @RequestParam Integer userId) {
+//
+//        InstructorRating instructorRating =
+//                instructorRatingService.getByInstructorAndUser(instructorId, userId);
+//        if(instructorRating == null) {
+//            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+//        }
+//        InstructorRatingPresentation instructorRatingPresentation = new InstructorRatingPresentation(instructorRating);
+//
+//        return new ResponseEntity<>(instructorRatingPresentation, HttpStatus.OK);
+//    }
+
+    @RequestMapping(value = "/{instructorId}/ratings", method = RequestMethod.POST)
     public ResponseEntity<?> addNewRating(@RequestBody InstructorRatingPresentation rating) throws UserServiceException, ParseException {
 
         instructorRatingService.addInstructorRating(rating);

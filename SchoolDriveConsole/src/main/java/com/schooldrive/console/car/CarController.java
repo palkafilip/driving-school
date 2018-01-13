@@ -6,10 +6,7 @@ import com.schooldrive.logic.car.CarServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,14 +27,7 @@ public class CarController {
 
     
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public ResponseEntity<?> getCar(@RequestParam Integer id) throws CarServiceException {
-        CarPresentation car = new CarPresentation(carService.getCarById(id));
-        return new ResponseEntity<Object>(car, HttpStatus.OK);
-    }
-
-    @RequestMapping(value = "/all", method = RequestMethod.GET)
-    public ResponseEntity<?> getAllCars() {
-
+    public ResponseEntity<?> getAllCar() {
         List<CarPresentation> cars = carService
                 .getAllCars()
                 .stream()
@@ -45,6 +35,12 @@ public class CarController {
                 .collect(Collectors.toList());
 
         return new ResponseEntity<>(cars, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/{carId}", method = RequestMethod.GET)
+    public ResponseEntity<?> getCarById(@PathVariable Integer carId) throws CarServiceException {
+        CarPresentation car = new CarPresentation(carService.getCarById(carId));
+        return new ResponseEntity<Object>(car, HttpStatus.OK);
     }
 
 }
